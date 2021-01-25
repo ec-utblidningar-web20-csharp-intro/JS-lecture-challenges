@@ -1,0 +1,11 @@
+.butterfly {
+  width: 20%;
+  filter: grayscale(100%);
+}
+
+.abs-pos {
+  position:absolute;
+  z-index: 1000;
+
+  left: 10%;
+}

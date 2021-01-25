@@ -1,0 +1,20 @@
+.A, .B {
+  width: 40%;
+  height: 200px;
+
+  border-color: black;
+  border-width: 1px;
+  border-style: solid;
+
+  overflow: auto;
+
+  background-color: rgb(243, 243, 243);
+  padding: 4px;
+  margin: 10px;
+}
+
+.divider {
+  width: 20%;
+  font-size: xx-large;
+  text-align: center;
+}

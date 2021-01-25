@@ -1,0 +1,46 @@
+.thin {
+  font-weight: 300;
+}
+.thick {
+  font-weight: 900;
+}
+
+.link-1 a {
+  text-transform: uppercase;
+  font-size: 36px;
+  color: black;
+  text-decoration: none;
+  position: relative;
+  display: block;
+}
+
+.link-1{
+    margin-top: 10%;
+}
+
+.link-1 a:before,
+.link-1 a:after {
+  content: "";
+  border-bottom: solid 1px black;
+  position: absolute;
+  bottom: 0;
+  width: 0;
+}
+
+.link-1 a:before {
+  left: 0;
+}
+.link-1 a:after {
+  right: 0;
+}
+
+.link-1 a:hover:before,
+.link-1 a:hover:after {
+  width: 50%;
+}
+
+.link-1 a:before,
+.link-1 a:after {
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
