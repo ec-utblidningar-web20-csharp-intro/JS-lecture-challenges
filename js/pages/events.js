@@ -1,5 +1,5 @@
 // lägg till detta
-//"use strict";
+"use strict";
 
 /* Fråga 1
  
@@ -7,14 +7,35 @@
   att sätta style.filter = "grayscale(0%)"
   när man svävar över den.
 
+  https://www.w3schools.com/jsref/met_element_setattribute.asp
+
   Använd onmouseenter eller mouseenter
+  https://www.w3schools.com/js/js_events.asp
 
   för att få tag på fjärilen skickar du med
   en parameter, som brukar namnges 'event'
-
   sen kan man få tag på HTMLElementet via
   'event.currentTarget'
 */
+
+function belysFjäril(e){
+  let butterfly = e.currentTarget;
+  butterfly.style.filter = "grayscale(0%)";
+}
+//belysFjäril();
+
+let hej = 5;
+let obj = { namn:"björn", yrke:"lärare" };
+let ref = obj;
+
+let func = belysFjäril;
+//func();
+
+let butterfly = document.querySelector("#q1 .butterfly");
+butterfly.onmouseenter = belysFjäril;
+//butterfly.onmouseenter();
+
+butterfly.addEventListener("mouseenter", belysFjäril);
 
 
 
@@ -36,9 +57,26 @@
 
   Gör en för onmouseenter som fungerar samma som tidigare,
   och en för onmouseleave som sätter style till en tom sträng.
+
+  butterfly.style.filter = "grayscale(0%)"; // ge fjäril färg
+
+  butterfly.style.filter = "grayscale(100%)"; // låt fjäril bli grå
+  butterfly.style.filter = ""; // låt fjäril bli grå
 */
+{
+  let butterfly = document.querySelector("#q2 img");
 
-
+  butterfly.onmouseenter = function (e){
+    let butterfly = e.currentTarget;
+    butterfly.style.filter = "grayscale(0%)"; // ge fjäril färg
+  }; 
+  butterfly.onmouseleave = function (e){
+    let butterfly = e.currentTarget;
+    butterfly.style.filter = "grayscale(100%)"; // låt fjäril bli grå
+  };
+  
+  let calc = 5 + 2;
+}
 
 /* Fråga 3
 
@@ -52,6 +90,33 @@
   Vad är det för för- och nackdelar med de olika metoderna?
 */
 
+let b1 = document.getElementById("b1");
+let b2 = document.getElementById("b2");
+let b3 = document.getElementById("b3");
+
+/*
+b1.onmouseover = function(event){
+  // innehållet i funktionen
+  belysFjäril(event);
+}
+*/
+// <img id="b1" onMouseOver="belysFjäril(event)" class="butterfly" src="/img/butterfly.webp">
+
+function skrik(e){
+  alert("AAAAAA!!");
+}
+
+b2.onmouseover = belysFjäril;
+//b2.onmouseover += skrik;
+/*
+b2.addEventListener("mouseover", belysFjäril);
+b2.addEventListener("mouseover", skrik);
+*/
+
+b3.addEventListener("mouseover", belysFjäril);
+
+//TODO timer
+window.setInterval(skrik, 10_000);
 
 
 /* Fråga 4
@@ -70,6 +135,16 @@
 
   Alla "click" event ställs in så att de bara kör en gång innan de försvinner via
   addEventListener("click", foo, {once:true})
+
+
+  Trick:
+  
+  Se till att fjärilen är ett direkt barn till <body>
+  Sätt CSS position till absolute
+  Sätt CSS z-position till något högt värde
+  Sätt position via CSS left och top
+  Hämta musposition via document.onmousemove eventet 
+    som gäller vart somhelst i websidan
  */
 
 
