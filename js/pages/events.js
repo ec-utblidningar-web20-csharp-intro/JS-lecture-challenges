@@ -1,3 +1,6 @@
+// lägg till detta
+//"use strict";
+
 /* Fråga 1
  
   Skapa en funktion som tänder en fjäril genom
