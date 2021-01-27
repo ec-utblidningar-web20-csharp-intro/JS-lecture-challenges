@@ -1,5 +1,8 @@
 .butterfly {
   width: 20%;
+}
+
+.greyed-out {
   filter: grayscale(100%);
 }
 

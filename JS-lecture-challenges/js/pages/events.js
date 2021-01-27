@@ -20,7 +20,7 @@
 
 function belysFjäril(e){
   let butterfly = e.currentTarget;
-  butterfly.style.filter = "grayscale(0%)";
+  butterfly.classList.remove("greyed-out");
 }
 //belysFjäril();
 
@@ -66,14 +66,13 @@ butterfly.addEventListener("mouseenter", belysFjäril);
 {
   let butterfly = document.querySelector("#q2 img");
 
-  butterfly.onmouseenter = function (e){
+  function toggleColor(e){
     let butterfly = e.currentTarget;
-    butterfly.style.filter = "grayscale(0%)"; // ge fjäril färg
-  }; 
-  butterfly.onmouseleave = function (e){
-    let butterfly = e.currentTarget;
-    butterfly.style.filter = "grayscale(100%)"; // låt fjäril bli grå
-  };
+    butterfly.classList.toggle("greyed-out");
+  }
+  
+  butterfly.onmouseenter = toggleColor; 
+  butterfly.onmouseleave = toggleColor;
   
   let calc = 5 + 2;
 }
@@ -151,7 +150,7 @@ window.setInterval(skrik, 10_000);
 function flyga(){
   // gör så att fjärilen följer muspekaren
 }
- document.onmousemove = flyga;
+document.onmousemove = flyga;
 
 
 
