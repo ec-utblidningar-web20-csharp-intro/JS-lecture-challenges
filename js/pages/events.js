@@ -115,7 +115,7 @@ b2.addEventListener("mouseover", skrik);
 b3.addEventListener("mouseover", belysFjäril);
 
 //TODO timer
-window.setInterval(skrik, 10_000);
+//window.setInterval(skrik, 10_000);
 
 
 /* Fråga 4
@@ -146,11 +146,41 @@ window.setInterval(skrik, 10_000);
     som gäller vart somhelst i websidan
  */
 
- 
-function flyga(){
-  // gör så att fjärilen följer muspekaren
+ //skapa ett lokalt scope så att jag inte bråkar med
+ //andra variabler definierat i tidigare uppgifter
+{ 
+  // CSS selector syntax
+  let butterfly = document.querySelector("#q4 img");
+  butterfly.classList.add("abs-pos");
+
+  function flyga(e){
+    //console.log(`Sido koordinater x:${e.clientX} y:${e.clientY}`);
+    let x = window.scrollX + e.clientX;
+    let y = window.scrollY + e.clientY;
+
+    x -= butterfly.offsetWidth / 2;
+    y -= butterfly.offsetHeight / 2;
+
+    butterfly.style.left = x + "px";
+    butterfly.style.top = y + "px";
+    // gör så att fjärilen följer muspekaren
+  }
+
+  //börja/sluta flyga om vi klickar
+  butterfly.onclick = function(){
+     // om onmousemove inte är definierad
+    if(!document.onmousemove){
+      document.onmousemove = flyga;
+
+    }else{
+      document.onmousemove = undefined;
+    }
+
+    butterfly.classList.toggle("greyed-out");
+    butterfly.classList.toggle("flying");
+  };
 }
-document.onmousemove = flyga;
+ 
 
 
 
@@ -209,36 +239,37 @@ b3.addEventListener("mouseover", lightUp);
 
 // Fråga 4
 /*
-let bf = document.querySelector("#q4 img");
+//skapa ett lokalt scope så att jag inte bråkar med
+ //andra variabler definierat i tidigare uppgifter
+{ 
+  // CSS selector syntax
+  let butterfly = document.querySelector("#q4 img");
+  butterfly.classList.add("abs-pos");
 
-bf.addEventListener("click", lightUp);
-bf.addEventListener("click", startFlying, {once:true});
+  function flyga(e){
+    //console.log(`Sido koordinater x:${e.clientX} y:${e.clientY}`);
+    let x = window.scrollX + e.clientX;
+    let y = window.scrollY + e.clientY;
 
-function lightUp(event){
-    let butterfly = event.currentTarget;
-    butterfly.style.filter = "grayscale(0%)";
-}
-function startFlying(event){
-    let butterfly = event.currentTarget;
+    x -= butterfly.offsetWidth / 2;
+    y -= butterfly.offsetHeight / 2;
 
-    document.body.append(butterfly);
+    butterfly.style.left = x + "px";
+    butterfly.style.top = y + "px";
+    // gör så att fjärilen följer muspekaren
+  }
 
-    butterfly.addEventListener("click", stopFlying, {once:true});
-    document.addEventListener("mousemove", fly);
-}
-function stopFlying(event){
-    let butterfly = event.currentTarget;
+  //börja/sluta flyga om vi klickar
+  butterfly.onclick = function(){
+     // om onmousemove inte är definierad
+    if(!document.onmousemove){
+      document.onmousemove = flyga;
 
-    document.querySelector("#q4 div").append(butterfly);
-    butterfly.style = "";
+    }else{
+      document.onmousemove = undefined;
+    }
 
-    butterfly.addEventListener("click", startFlying, {once:true});
-    document.removeEventListener("mousemove", fly);
-}
-function fly(event){
-    let butterfly = bf;
-
-    butterfly.style.left = event.pageX - butterfly.offsetWidth / 2 + 'px';
-    butterfly.style.top = event.pageY - butterfly.offsetHeight / 2 + 'px';
+    butterfly.classList.toggle("greyed-out");
+  };
 }
 */

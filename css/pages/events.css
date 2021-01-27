@@ -9,6 +9,15 @@
 .abs-pos {
   position:absolute;
   z-index: 1000;
+}
 
-  left: 10%;
+@keyframes fly {
+  0%   {transform: rotate(0deg);}
+  25%  {transform: rotate(45deg);}
+  50%  {transform: rotate(0deg);}
+  75%  {transform: rotate(-45deg);}
+  100% {transform: rotate(0deg);}
+}
+.flying{
+  animation: fly 1s infinite;
 }
