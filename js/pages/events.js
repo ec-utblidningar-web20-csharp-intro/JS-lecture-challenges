@@ -147,6 +147,11 @@ window.setInterval(skrik, 10_000);
     som gäller vart somhelst i websidan
  */
 
+ 
+function flyga(){
+  // gör så att fjärilen följer muspekaren
+}
+ document.onmousemove = flyga;
 
 
 
