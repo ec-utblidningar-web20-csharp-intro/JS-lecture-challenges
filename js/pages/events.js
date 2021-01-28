@@ -1,6 +1,5 @@
 // lägg till detta
 "use strict";
-
 /* Fråga 1
  
   Skapa en funktion som tänder en fjäril genom
@@ -120,8 +119,23 @@ b3.addEventListener("mouseover", belysFjäril);
 
 /* Fråga 4
   
-  Målet är att fjärilen ska börja flyga genom avancerat event användande.
+  Målet är att fjärilen ska börja flyga.
 
+  Börja med att den flyger hela tiden, 
+  lös klickande och sånt senare.
+
+  Trick:
+  Se till att fjärilen är ett direkt barn till <body>
+  Sätt CSS position till absolute
+  Sätt CSS z-position till något högt värde
+  Sätt position via CSS left och top
+  Hämta musposition via document.onmousemove eventet 
+    som gäller vart somhelst i websidan
+    
+  https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent
+
+
+  
   Använd addEventListener för att binda två funktioner
   till "click" eventet.
 
@@ -134,51 +148,14 @@ b3.addEventListener("mouseover", belysFjäril);
 
   Alla "click" event ställs in så att de bara kör en gång innan de försvinner via
   addEventListener("click", foo, {once:true})
-
-
-  Trick:
-  
-  Se till att fjärilen är ett direkt barn till <body>
-  Sätt CSS position till absolute
-  Sätt CSS z-position till något högt värde
-  Sätt position via CSS left och top
-  Hämta musposition via document.onmousemove eventet 
-    som gäller vart somhelst i websidan
  */
 
  //skapa ett lokalt scope så att jag inte bråkar med
  //andra variabler definierat i tidigare uppgifter
 { 
-  // CSS selector syntax
-  let butterfly = document.querySelector("#q4 img");
-  butterfly.classList.add("abs-pos");
-
   function flyga(e){
-    //console.log(`Sido koordinater x:${e.clientX} y:${e.clientY}`);
-    let x = window.scrollX + e.clientX;
-    let y = window.scrollY + e.clientY;
-
-    x -= butterfly.offsetWidth / 2;
-    y -= butterfly.offsetHeight / 2;
-
-    butterfly.style.left = x + "px";
-    butterfly.style.top = y + "px";
-    // gör så att fjärilen följer muspekaren
   }
-
-  //börja/sluta flyga om vi klickar
-  butterfly.onclick = function(){
-     // om onmousemove inte är definierad
-    if(!document.onmousemove){
-      document.onmousemove = flyga;
-
-    }else{
-      document.onmousemove = undefined;
-    }
-
-    butterfly.classList.toggle("greyed-out");
-    butterfly.classList.toggle("flying");
-  };
+  //börja med att kunna flytta fjärilen via onmousemove eller "mousemove"
 }
  
 
