@@ -151,9 +151,46 @@ b3.addEventListener("mouseover", belysFjäril);
  */
 
 { 
-  function flyga(mouseEvent){
+  let butterfly = document.querySelector("#q4 img");
+  butterfly.classList.add("abs-pos");
+  document.body.append(butterfly);
+
+  butterfly.classList.remove("greyed-out");
+  // Tyvärr kan vi inte flyga med .flying samtidigt 
+  // som vi förflyttar oss med transform :(
+  //butterfly.classList.add("flying");
+
+  butterfly.style.left = "0px";
+  butterfly.style.top = "0px";
+  
+  let latestX = 0;
+  let latestY = 0;
+
+  function setButterflyPos(x, y){
+    latestX = x;
+    latestY = y;
+
+    x += window.scrollX; // förändras på onscroll
+    y += window.scrollY; // förändras på onscroll
+
+    x -= butterfly.offsetWidth / 2;
+    y -= butterfly.offsetHeight / 4;
+
+    // Tyvärr kan vi inte flyga med .flying samtidigt 
+    // som vi förflyttar oss med transform :(
+    butterfly.style.transform = `translate(${x}px, ${y}px)`;
   }
-  //börja med att kunna flytta fjärilen via onmousemove eller "mousemove"
+  
+  document.onmousemove = function (mouseEvent){
+    let x = mouseEvent.x; // förändras på onmousemove
+    let y = mouseEvent.y; // förändras på onmousemove
+    setButterflyPos(x,y);
+  };
+  document.onscroll = function (event){
+    let x = latestX;
+    let y = latestY;
+    setButterflyPos(x,y);
+  };
 }
  
 
