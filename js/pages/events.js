@@ -150,10 +150,8 @@ b3.addEventListener("mouseover", belysFjäril);
   addEventListener("click", foo, {once:true})
  */
 
- //skapa ett lokalt scope så att jag inte bråkar med
- //andra variabler definierat i tidigare uppgifter
 { 
-  function flyga(e){
+  function flyga(mouseEvent){
   }
   //börja med att kunna flytta fjärilen via onmousemove eller "mousemove"
 }
