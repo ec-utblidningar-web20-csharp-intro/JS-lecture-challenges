@@ -150,58 +150,40 @@ b3.addEventListener("mouseover", belysFjäril);
   addEventListener("click", foo, {once:true})
  */
 
-{ 
+//skapa ett lokalt scope så att jag inte bråkar med
+ //andra variabler definierat i tidigare uppgifter
+ { 
+  // CSS selector syntax
   let butterfly = document.querySelector("#q4 img");
   butterfly.classList.add("abs-pos");
-  document.body.append(butterfly);
 
-  butterfly.classList.remove("greyed-out");
-  // Tyvärr kan vi inte flyga med .flying samtidigt 
-  // som vi förflyttar oss med transform :(
-  //butterfly.classList.add("flying");
-
-  butterfly.style.left = "0px";
-  butterfly.style.top = "0px";
-  
-  let latestX = 0;
-  let latestY = 0;
-
-  function setButterflyPos(x, y){
-    latestX = x;
-    latestY = y;
-
-    x += window.scrollX; // förändras på onscroll
-    y += window.scrollY; // förändras på onscroll
+  function flyga(e){
+    //console.log(`Sido koordinater x:${e.clientX} y:${e.clientY}`);
+    let x = window.scrollX + e.clientX;
+    let y = window.scrollY + e.clientY;
 
     x -= butterfly.offsetWidth / 2;
-    y -= butterfly.offsetHeight / 4;
+    y -= butterfly.offsetHeight / 2;
 
-    // Tyvärr kan vi inte flyga med .flying samtidigt 
-    // som vi förflyttar oss med transform :(
-    butterfly.style.transform = `translate(${x}px, ${y}px)`;
+    butterfly.style.left = x + "px";
+    butterfly.style.top = y + "px";
+    // gör så att fjärilen följer muspekaren
   }
-  
-  document.onmousemove = function (mouseEvent){
-    let x = mouseEvent.x; // förändras på onmousemove
-    let y = mouseEvent.y; // förändras på onmousemove
-    setButterflyPos(x,y);
-  };
-  document.onscroll = function (event){
-    let x = latestX;
-    let y = latestY;
-    setButterflyPos(x,y);
+
+  //börja/sluta flyga om vi klickar
+  butterfly.onclick = function(){
+     // om onmousemove inte är definierad
+    if(!document.onmousemove){
+      document.onmousemove = flyga;
+
+    }else{
+      document.onmousemove = undefined;
+    }
+
+    butterfly.classList.toggle("greyed-out");
+    butterfly.classList.toggle("flying");
   };
 }
- 
-
-
-
-
-
-
-
-
-
 
 
 

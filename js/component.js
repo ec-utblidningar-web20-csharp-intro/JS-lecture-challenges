@@ -1,21 +1,44 @@
-let component = {
-  load: (name) => {
-    let spot = document.currentScript;
+{
+  const observer = new MutationObserver(function (mutationsList, observer) {
+    for (const mutation of mutationsList) {
+      for (const node of mutation.addedNodes){
+        if (node.nodeName === "INSERT") {
+          console.log(node);
+          loadComponent(node, node.getAttribute("data-component"))
+        }
+      }
+    }
+  });
 
-    document.head.insertAdjacentHTML(
-      "beforeend",
-      `<link rel="stylesheet" href="/JS-lecture-challenges/css/components/${name}.css"/>`
-    );
+  observer.observe(document, {
+    childList: true,
+    subtree: true,
+  });
 
-    fetch(`/JS-lecture-challenges/html/components/${name}.html`)
+  function loadComponent(placeholder, componentName) {
+    // importera HTML
+    fetch(`html/components/${componentName}.html`)
       .then((response) => response.text())
-      .then((text) => {
-        spot.outerHTML = text;
+      .then((html) => {
+        /* ersätt '<script>component.load("my_component");</script>'
+             html elementet med komponentens html */
+        placeholder.outerHTML = html;
 
+        // importera JS
         let script = document.createElement("script");
         script.type = "text/javascript";
-        script.src = `/JS-lecture-challenges/js/components/${name}.js`;
+        script.src = `js/components/${componentName}.js`;
         document.head.append(script);
+
+        // importera css
+        let link = document.createElement("link");
+        link.rel = "stylesheet";
+        link.href = `css/components/${componentName}.css`;
+        document.head.append(link);
       });
-  },
-};
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    observer.disconnect();
+  });
+}
