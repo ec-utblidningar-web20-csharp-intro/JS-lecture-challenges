@@ -1,15 +1,19 @@
 {
+  // Här använder jag MutationObserver för att byta ut
+  // <insert> elementet så fort browsern skapar det
+  // https://tr.javascript.info/mutation-observer
   const observer = new MutationObserver(function (mutationsList, observer) {
     for (const mutation of mutationsList) {
-      for (const node of mutation.addedNodes){
+      for (const node of mutation.addedNodes) {
+        // om node är <insert></insert>
         if (node.nodeName === "INSERT") {
-          console.log(node);
-          loadComponent(node, node.getAttribute("data-component"))
+          loadComponent(node, node.getAttribute("data-component"));
         }
       }
     }
   });
 
+  //börja kolla efter nyskapta element
   observer.observe(document, {
     childList: true,
     subtree: true,
@@ -20,8 +24,7 @@
     fetch(`html/components/${componentName}.html`)
       .then((response) => response.text())
       .then((html) => {
-        /* ersätt '<script>component.load("my_component");</script>'
-             html elementet med komponentens html */
+        // ersätt <insert> med komponentens html
         placeholder.outerHTML = html;
 
         // importera JS
@@ -38,6 +41,7 @@
       });
   }
 
+  //sluta kolla när hela DOM har blivit skapad
   document.addEventListener("DOMContentLoaded", function () {
     observer.disconnect();
   });
