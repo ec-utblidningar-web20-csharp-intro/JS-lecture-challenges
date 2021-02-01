@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Funktioner</title>
-    <base href="/JS-lecture-challenges/">
+    <base href="../../">
 
     <link rel="stylesheet" href="css/general.css">
     <script src="js/component.js"></script>
@@ -23,52 +23,208 @@
     <main class="fx fx-center fx-col">
         <section>
             <h2>Fråga 1</h2>
-            <div id="q1 relative-pos">
-                <div class="fx fx-row fx-center">
-                    <p>Nån fin objekt</p>
-                </div>
-                <details>
-                    <summary>Facit</summary>
-                    <pre><code class="javascript">                   
-//skapa ett lokalt scope så att jag inte bråkar med
-//andra variabler definierat i tidigare uppgifter
-{ 
- // CSS selector syntax
- let butterfly = document.querySelector("#q4 img");
- butterfly.classList.add("abs-pos");
-
- function flyga(e){
-   //console.log(`Sido koordinater x:${e.clientX} y:${e.clientY}`);
-   let x = window.scrollX + e.clientX;
-   let y = window.scrollY + e.clientY;
-
-   x -= butterfly.offsetWidth / 2;
-   y -= butterfly.offsetHeight / 2;
-
-   butterfly.style.left = x + "px";
-   butterfly.style.top = y + "px";
-   // gör så att fjärilen följer muspekaren
- }
-
- //börja/sluta flyga om vi klickar
- butterfly.onclick = function(){
-    // om onmousemove inte är definierad
-   if(!document.onmousemove){
-     document.onmousemove = flyga;
-
-   }else{
-     document.onmousemove = undefined;
-   }
-
-   butterfly.classList.toggle("greyed-out");
-   butterfly.classList.toggle("flying");
- };
-}
-                    </code></pre>
-                </details>
+            <div id="q1" class="fx fx-row fx-center fx-space">
+              <div class="fx fx-col fx-space height-y">
+                <button id="q1_b1">Kolla teacher</button>
+                <button id="q1_b2">Kolla window.console</button>
+                <button id="q1_b3">Kolla DOM</button>
+              </div>
+              <div id="q1_out" class="scrollable-text output-box-width height-y">Skriv resultatet här</div>
             </div>
+            <details>
+                <summary>Facit</summary>
+                <pre><code class="javascript">{
+    let b1 = document.querySelector("#q1_b1");
+    let b2 = document.querySelector("#q1_b2");
+    let b3 = document.querySelector("#q1_b3");
+
+    // anonym funktion sparad i en variabel för att hålla definitionen lokalt
+    let checkObjectKeys = function (obj){
+        let textbox = document.querySelector("#q1_out");
+        let output = "";
+
+        // loopa över alla nyklar/properties i objektet
+        for(let key in obj){
+            output += `${key}: ${typeof obj[key]} <br/>`;
+        }
+        
+        textbox.innerHTML = output;
+    }
+
+    b1.onclick = () => checkObjectKeys(simpleObject);
+    b2.onclick = () => checkObjectKeys(window.console);
+    b3.onclick = () => checkObjectKeys(document);
+}</code></pre>
+            </details>
+        </section>
+        <section>
+            <h2>Fråga 2</h2>
+            <div id="q2" class="fx fx-row fx-center fx-space">
+              <div class="fx fx-col fx-space height-y">
+                <button id="q2_b1">Kolla testElement</button>
+                <button id="q2_b2" ondrag="console.log('ondrag')" onload="console.log('ondrag')">Kolla denna knappen</button>
+                <button id="q2_b3">Kolla DOM</button>
+              </div>
+              <div id="q2_out" class="scrollable-text output-box-width height-y">Skriv resultatet här</div>
+            </div>
+            <details>
+                <summary>Facit</summary>
+                <pre><code class="javascript">{
+    let b1 = document.querySelector("#q2_b1");
+    let b2 = document.querySelector("#q2_b2");
+    let b3 = document.querySelector("#q2_b3");
+
+    // anonym funktion sparad i en variabel för att hålla definitionen lokalt
+    let checkHtmlObjectEventHandlers = function (obj){
+        let textbox = document.querySelector("#q2_out");
+        let output = "";
+
+        // loopa över alla nyklar/properties i objektet
+        for(let key in obj){
+            if(!key.startsWith("on")) { continue; }
+
+            if(obj[key] === null){
+                output += `<span style="color:grey">${key}: not used </span><br/>`;
+            }
+            else{
+                let handlerFunction = obj[key]
+                output += `${key}: ${handlerFunction}<br/>`;
+            }
+        }
+        
+        textbox.innerHTML = output;
+    }
+
+    b1.onclick = () => checkHtmlObjectEventHandlers(testElement);
+    b2.onclick = () => checkHtmlObjectEventHandlers(b1);
+    b3.onclick = () => checkHtmlObjectEventHandlers(document);
+}</code></pre>
+            </details>
+        </section>
+        <section>
+            <h2>Fråga 3</h2>
+            <div id="q3" class="fx fx-row fx-center fx-left">
+              <div class="fx fx-col">
+                <h3>Test JSON</h3>
+                <button id="q3_b1">tolka JSON </button>
+                <pre class="height-y"><code id="q3_j1" class="json scrollable-code height-y">{
+  "firstName": "John",
+  "lastName": "Smith",
+  "isAlive": true,
+  "age": 27,
+  "address": {
+    "streetAddress": "21 2nd Street",
+    "city": "New York",
+    "state": "NY",
+    "postalCode": "10021-3100"
+  },
+  "phoneNumbers": [
+    {
+      "type": "home",
+      "number": "212 555-1234"
+    },
+    {
+      "type": "office",
+      "number": "646 555-4567"
+    }
+  ],
+  "children": [],
+  "spouse": null
+}</code></pre>
+              </div>
+              <div class="fx fx-col">
+                <h3>OpenWeather svarsdata</h3>
+                <button id="q3_b2">tolka JSON </button>
+                <pre class="height-y"><code id="q3_j2" class="json scrollable-code height-y">{
+  "coord": {
+    "lon": -122.08,
+    "lat": 37.39
+  },
+  "weather": [
+    {
+      "id": 800,
+      "main": "Clear",
+      "description": "clear sky",
+      "icon": "01d"
+    }
+  ],
+  "base": "stations",
+  "main": {
+    "temp": 282.55,
+    "feels_like": 281.86,
+    "temp_min": 280.37,
+    "temp_max": 284.26,
+    "pressure": 1023,
+    "humidity": 100
+  },
+  "visibility": 16093,
+  "wind": {
+    "speed": 1.5,
+    "deg": 350
+  },
+  "clouds": {
+    "all": 1
+  },
+  "dt": 1560350645,
+  "sys": {
+    "type": 1,
+    "id": 5122,
+    "message": 0.0139,
+    "country": "US",
+    "sunrise": 1560343627,
+    "sunset": 1560396563
+  },
+  "timezone": -25200,
+  "id": 420006353,
+  "name": "Mountain View",
+  "cod": 200
+  }</code></pre>
+              </div>
+              <div class="fx fx-col">
+                <button id="q3_b3">teacher till JSON </button>
+                <div id="q3_out" class="scrollable-text height-y">Skriv resultatet här</div>
+              </div>
+            </div>
+            <details>
+                <summary>Facit</summary>
+                <pre><code class="javascript">{
+    let b1 = document.querySelector("#q3_b1");
+    let b2 = document.querySelector("#q3_b2");
+    let b3 = document.querySelector("#q3_b3");
+
+    b1.onclick = function (){
+        let jsonSource = document.querySelector("#q3_j1");
+        let dude = JSON.parse(jsonSource.innerText);
+
+        alert(
+            `${dude.firstName} ${dude.lastName} ${dude.isAlive ? 'lives':'died'} in ${dude.address.city}.
+He ${dude.isAlive ? 'has':'had'} ${dude.children.length} children.`);
+    };
+
+    b2.onclick = function (){
+        let jsonSource = document.querySelector("#q3_j2");
+        let info = JSON.parse(jsonSource.innerText);
+        let weather = info.weather[0];
+
+        alert(
+            `The weather today (${info.dt}) in ${info.name} city is 
+${weather.main} with a ${weather.description}.`);
+    };
+
+    b3.onclick = function (){
+        let textbox = document.querySelector("#q3_out");
+        textbox.innerHTML = `<pre>${JSON.stringify(teacher, null, ' ')}</pre>`;
+    };
+}</code></pre>
+            </details>
         </section>
     </main>
+    <script>
+      // Ett litet script för att fixa facitkodens formatering
+      for(let elem of document.querySelectorAll(".javascript")) {
+        elem.innerHTML = elem.innerHTML.replace(/</g, "&lt;");
+      };
+    </script>
 </body>
 
 </html>

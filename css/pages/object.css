@@ -1,0 +1,29 @@
+.scrollable-text{
+    font-size: large;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    white-space: nowrap;
+}
+.scrollable-code:hover{
+    overflow: auto;
+}
+
+.output-box-width{
+    width:50%;
+}
+
+.scrollable-code{
+    overflow: hidden;
+}
+.scrollable-code:hover{
+    overflow: auto;
+}
+
+.height-y{
+    height:300px;
+}
+
+#q3 button{
+    height: 2em;
+    margin: 2em 3em;
+}

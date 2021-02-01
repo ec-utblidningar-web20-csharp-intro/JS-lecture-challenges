@@ -19,6 +19,15 @@ section > div {
   min-height: 20vh;
 }
 
+section > details {
+  margin: 10px;
+  border: 1px inset black;
+}
+
+summary {
+  outline: none;
+}
+
 
 .fx{
     display: flex;
@@ -33,12 +42,11 @@ section > div {
 .fx-col {
   flex-direction: column;
 }
-
-.relative-pos {
-  position: relative;
+.fx-space{
+  justify-content:space-around;
+  justify-items:space-around;
 }
-
-details {
-  position: absolute;
-  bottom: 0px;
+.fx-left{
+  justify-content:left;
+  justify-items:left;
 }
