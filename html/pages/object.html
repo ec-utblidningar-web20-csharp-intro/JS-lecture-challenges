@@ -8,9 +8,14 @@
     <base href="/JS-lecture-challenges/">
 
     <link rel="stylesheet" href="css/general.css">
-    <link rel="stylesheet" href="css/pages/object.css">
     <script src="js/component.js"></script>
+
+    <link rel="stylesheet" href="css/pages/object.css">
     <script defer="true" src="js/pages/object.js"></script>
+
+    <link rel="stylesheet" href="lib/highlight/styles/xcode.css">
+    <script src="lib/highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
 </head>
 
 <body>
@@ -18,10 +23,49 @@
     <main class="fx fx-center fx-col">
         <section>
             <h2>Fråga 1</h2>
-            <div id="q1">
+            <div id="q1 relative-pos">
                 <div class="fx fx-row fx-center">
                     <p>Nån fin objekt</p>
                 </div>
+                <details>
+                    <summary>Facit</summary>
+                    <pre><code class="javascript">                   
+//skapa ett lokalt scope så att jag inte bråkar med
+//andra variabler definierat i tidigare uppgifter
+{ 
+ // CSS selector syntax
+ let butterfly = document.querySelector("#q4 img");
+ butterfly.classList.add("abs-pos");
+
+ function flyga(e){
+   //console.log(`Sido koordinater x:${e.clientX} y:${e.clientY}`);
+   let x = window.scrollX + e.clientX;
+   let y = window.scrollY + e.clientY;
+
+   x -= butterfly.offsetWidth / 2;
+   y -= butterfly.offsetHeight / 2;
+
+   butterfly.style.left = x + "px";
+   butterfly.style.top = y + "px";
+   // gör så att fjärilen följer muspekaren
+ }
+
+ //börja/sluta flyga om vi klickar
+ butterfly.onclick = function(){
+    // om onmousemove inte är definierad
+   if(!document.onmousemove){
+     document.onmousemove = flyga;
+
+   }else{
+     document.onmousemove = undefined;
+   }
+
+   butterfly.classList.toggle("greyed-out");
+   butterfly.classList.toggle("flying");
+ };
+}
+                    </code></pre>
+                </details>
             </div>
         </section>
     </main>

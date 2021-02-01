@@ -33,3 +33,12 @@ section > div {
 .fx-col {
   flex-direction: column;
 }
+
+.relative-pos {
+  position: relative;
+}
+
+details {
+  position: absolute;
+  bottom: 0px;
+}
