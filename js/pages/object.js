@@ -130,65 +130,27 @@ let teacher = {
 }
 //#endregion
 
-//Skriv lösning till fråga 1 här nere
-// ---------------------------
-
-function colorizeType(type){
-  let type2color = {
-    number:"purple",
-    boolean:"blue",
-    string:"crimson",
-    function:"orange",
-    object:"green",
-  };
-  let color = type2color[type]??"black"; // [??] betyder: om null/undefined, returnera det höger om istället 
-  return `<span style='color:${color};'>${type}</span>`
-}
-
-function printObjectProperties(object)
-{
-  let outputBox = document.getElementById("q1_out");
-
-  let string = ""; //samla allt i en sträng
-  let keys = Object.keys(object).sort();
-  for(let key of keys){
-    let value = object[key];
-
-    if(value !== null)
-    {
-      let oneLine = ""
-      + key + ": ".padEnd(18 - key.length)
-      + colorizeType(typeof value)
-      + "\n";
-  
-      string += oneLine;
-    }
-  }
-  // omge strängen med pre så att \n och mellanslag
-  // inte formateras bort
-  outputBox.innerHTML = "<pre>" + string + "</pre>";
-}
-
-let b1 = document.getElementById("q1_b1");
-b1.onclick = function(){ 
-  printObjectProperties(teacher); 
-};
-let b2 = document.getElementById("q1_b2");
-b2.onclick = function(){ 
-  printObjectProperties(window.console); 
-};
-let b3 = document.getElementById("q1_b3");
-b3.onclick = function(){ 
-  printObjectProperties(document); 
-};
-// ---------------------------
-
 //
 // .name ger funktionens namn
+let myFunc = printProperties;
+console.log("myFunc variabeln refererar till " + myFunc.name);
 
 //
 // .toString() låter oss titta på hela funktionen
+console.log(myFunc.name + " är definierad såhär \n\n" + myFunc.toString());
 
+//
+// vi kan lägga till vad som helst till objekt
+console.log("printProperties.body är " + printProperties.body);
+printProperties.body = function(){
+  let whole = this.toString();
+  let body = whole.substring(whole.indexOf("{"));
+  return body;
+}
+
+console.log("printProperties.body är " + printProperties.body);
+
+console.log("funktionskroppen:\n" + printProperties.body());
 
 /* Fråga 2
   Funktioner är inte bara en lista med instruktioner,
@@ -238,8 +200,9 @@ testElement.onmousedown = logEvent;
 testElement.onscroll = logEvent;
 testElement.onplay = logEvent;
 
-document.onmouseup = (e) => console.log(`x:${e.x} y:${e.y}`);
+document.oncopy = logEvent;
 //#endregion
+
 
 //
 // JSON används för att skicka objekt över nätet som text
@@ -286,3 +249,8 @@ document.onmouseup = (e) => console.log(`x:${e.x} y:${e.y}`);
   (motsvarande finns för JSON.stringify med. då kallas
    funktionen man skickar med för en replacer, 'ersättera')
 */
+
+
+let b1 = document.querySelector("#q3_b1");
+let b2 = document.querySelector("#q3_b2");
+let b3 = document.querySelector("#q3_b3");
