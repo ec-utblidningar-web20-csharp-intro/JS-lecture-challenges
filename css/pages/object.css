@@ -4,7 +4,7 @@
     overflow-x: hidden;
     white-space: nowrap;
 }
-.scrollable-code:hover{
+.scrollable-text:hover{
     overflow: auto;
 }
 

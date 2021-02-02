@@ -51,9 +51,9 @@
         textbox.innerHTML = output;
     }
 
-    b1.onclick = () => checkObjectKeys(simpleObject);
-    b2.onclick = () => checkObjectKeys(window.console);
-    b3.onclick = () => checkObjectKeys(document);
+    b1.onclick = function() { checkObjectKeys(simpleObject) };
+    b2.onclick = function() { checkObjectKeys(window.console) };
+    b3.onclick = function() { checkObjectKeys(document) };
 }</code></pre>
             </details>
         </section>
@@ -95,9 +95,9 @@
         textbox.innerHTML = output;
     }
 
-    b1.onclick = () => checkHtmlObjectEventHandlers(testElement);
-    b2.onclick = () => checkHtmlObjectEventHandlers(b1);
-    b3.onclick = () => checkHtmlObjectEventHandlers(document);
+    b1.onclick = function() { checkHtmlObjectEventHandlers(testElement) };
+    b2.onclick = function() { checkHtmlObjectEventHandlers(b1) };
+    b3.onclick = function() { checkHtmlObjectEventHandlers(document) };
 }</code></pre>
             </details>
         </section>
