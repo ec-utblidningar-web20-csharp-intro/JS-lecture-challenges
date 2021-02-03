@@ -120,6 +120,100 @@ console.log(myArray.filter((n) => n % 2 === 0));
           </div>
         </div>
       </section>
+      <!-- Fråga 5 -->
+      <section>
+        <h2>Fråga 5</h2>
+        <div id="q5">
+          <div class="fx fx-row fx-center parent">
+            <div class="box">
+              <p>
+                Skapa en array med siffrorna 1, 4, 9, 25.<br />
+                Använd array.map för att skapa och skriva ut en ny array med kvadratroten av talen.<br />
+                TIPS. använd Math.sqrt för att räkna ut kvadratroten.
+              </p>
+            </div>
+            <div class="box">
+              <pre><code>
+const myArray = [1, 4, 9, 25];
+console.log(myArray.map(Math.sqrt));
+</code></pre>
+            </div>
+            <div class="spoiler" onclick="closeSpoiler(event)">Klicka för att visa lösning</div>
+          </div>
+        </div>
+      </section>
+      <!-- Fråga 6 -->
+      <section>
+        <h2>Fråga 6</h2>
+        <div id="q6">
+          <div class="fx fx-row fx-center parent">
+            <div class="box">
+              <p>
+                Gör likadant som på förra uppgiften, men denna gång får du inte använda map utan ska istället göra en
+                egen loop som löser problemet.
+              </p>
+            </div>
+            <div class="box">
+              <pre><code>
+const myArray = [1, 4, 9, 25];
+const newArray = [];
+for (let i = 0; i < myArray.length; i++) {
+  newArray.push(Math.sqrt(myArray[i]));
+}
+console.log(newArray);
+</code></pre>
+            </div>
+            <div class="spoiler" onclick="closeSpoiler(event)">Klicka för att visa lösning</div>
+          </div>
+        </div>
+      </section>
+      <!-- Fråga 7 -->
+      <section>
+        <h2>Fråga 7</h2>
+        <div id="q7">
+          <div class="fx fx-row fx-center parent">
+            <div class="box">
+              <p>
+                Skapa en array som heter names och som innehåller några olika namn.<br />
+                Skapa en funktion som heter reverseName som tar emot ett namn och returnerar namnet i omvänd ordning
+                (oskar blir rakso).<br />
+                Använda map och reverseName för att ändra ordning på alla namn i names.<br />
+                TIPS. array.reverse() kan användas för att vända på en array.
+              </p>
+            </div>
+            <div class="box">
+              <pre><code>
+const names = ['Oskar', 'Anders', 'Anna'];
+function reverseName(name) {
+  return name.split('').reverse().join('');
+}
+console.log(names.map(reverseName));
+</code></pre>
+            </div>
+            <div class="spoiler" onclick="closeSpoiler(event)">Klicka för att visa lösning</div>
+          </div>
+        </div>
+      </section>
+      <!-- Fråga 8 -->
+      <section>
+        <h2>Fråga 8</h2>
+        <div id="q8">
+          <div class="fx fx-row fx-center parent">
+            <div class="box">
+              <p>
+                Gör likadant som förra uppgiften men nu ska du byta ut reverseName mot en arrow funktion direkt i map.
+              </p>
+            </div>
+            <div class="box">
+              <pre><code>
+const names = ['Oskar', 'Anders', 'Anna'];
+console.log(names.map((name) => name.split('').reverse().join('')));
+</code></pre>
+            </div>
+            <div class="spoiler" onclick="closeSpoiler(event)">Klicka för att visa lösning</div>
+          </div>
+        </div>
+      </section>
     </main>
   </body>
 </html>
