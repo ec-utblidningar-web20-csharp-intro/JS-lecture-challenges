@@ -2,38 +2,55 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Funktioner</title>
-    <base href="../../">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Funktioner</title>
+  <base href="../../">
 
-    <link rel="stylesheet" href="css/general.css">
-    <script src="js/component.js"></script>
+  <link rel="stylesheet" href="css/general.css">
+  <script src="js/component.js"></script>
 
-    <link rel="stylesheet" href="css/pages/object.css">
-    <script defer="true" src="js/pages/object.js"></script>
+  <link rel="stylesheet" href="css/pages/object.css">
+  <script defer="true" src="js/pages/object_frågor.js"></script>
+  <script defer="true" src="js/pages/object_övning.js"></script>
 
-    <link rel="stylesheet" href="lib/highlight/styles/xcode.css">
-    <script src="lib/highlight/highlight.pack.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
+  <link rel="stylesheet" href="lib/highlight/styles/xcode.css">
+  <script src="lib/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
 </head>
 
 <body>
-    <insert data-component="nav"></insert>
-    <main class="fx fx-center fx-col">
-        <section>
-            <h2>Fråga 1</h2>
-            <div id="q1" class="fx fx-row fx-center fx-space">
-              <div class="fx fx-col fx-space height-y">
-                <button id="q1_b1">Kolla teacher</button>
-                <button id="q1_b2">Kolla window.console</button>
-                <button id="q1_b3">Kolla DOM</button>
-              </div>
-              <div id="q1_out" class="scrollable-text output-box-width height-y">Skriv resultatet här</div>
-            </div>
-            <details>
-                <summary>Facit</summary>
-                <pre><code class="javascript">{
+  <insert data-component="nav"></insert>
+  <main class="fx fx-center fx-col">
+    <section>
+      <h2>Fråga 1</h2>
+      <p>Skriv en funktion som loopar igenom alla keys i ett objekt
+        och skriver ut alla properties och vilken typ de är.
+      </p>
+      <ul>
+        <li>Använd <a href="https://www.w3schools.com/jsref/jsref_forin.asp" target="_blank"><code>for( in )</code></a>
+          för att
+          loopa. </li>
+        <li>Använd <code>typeof</code> för att kolla typen på value</li>
+        <li>Använd <code>&lt;br/></code> för radbyte</li>
+      </ul>
+      <h3>Bonus:</h3>
+      <p>Använd <a href="https://www.w3schools.com/tags/tag_span.asp" target="_blank">&lt;span></a>
+        för att ändra färg beroende på typ av value.
+        <code>string</code> blir <span style="color: green;">grön</span>, 
+        <code>number</code> blir <span style="color: red;">röd</span> etc.
+      </p>
+      <div id="q1" class="fx fx-row fx-center fx-space">
+        <div class="fx fx-col fx-space height-y">
+          <button id="q1_b1">Kolla teacher</button>
+          <button id="q1_b2">Kolla window.console</button>
+          <button id="q1_b3">Kolla DOM</button>
+        </div>
+        <div id="q1_out" class="scrollable-text output-box-width height-y">Skriv resultatet här</div>
+      </div>
+      <details>
+        <summary>Facit</summary>
+        <pre><code class="javascript">{
     let b1 = document.querySelector("#q1_b1");
     let b2 = document.querySelector("#q1_b2");
     let b3 = document.querySelector("#q1_b3");
@@ -55,21 +72,51 @@
     b2.onclick = function() { checkObjectKeys(window.console) };
     b3.onclick = function() { checkObjectKeys(document) };
 }</code></pre>
-            </details>
-        </section>
-        <section>
-            <h2>Fråga 2</h2>
-            <div id="q2" class="fx fx-row fx-center fx-space">
-              <div class="fx fx-col fx-space height-y">
-                <button id="q2_b1">Kolla testElement</button>
-                <button id="q2_b2" ondrag="console.log('ondrag')" onload="console.log('ondrag')">Kolla denna knappen</button>
-                <button id="q2_b3">Kolla DOM</button>
-              </div>
-              <div id="q2_out" class="scrollable-text output-box-width height-y">Skriv resultatet här</div>
-            </div>
-            <details>
-                <summary>Facit</summary>
-                <pre><code class="javascript">{
+      </details>
+    </section>
+    <section>
+      <h2>Fråga 2</h2>
+      <p>Funktioner är inte bara en lista med instruktioner,
+        funktioner är också objekt, med sina egna key/value pairs
+      </p>
+      <p>Skriv en funktion som kollar på ett HTML objekts
+        event handlers ('myObj.onclick etc.') och dimmar
+        ut de som är 'undefined' samt visar en snutt av
+        källkoden om det finns en handler funktion registrerad
+      </p>
+      <ul>
+        <li>kolla om nyckeln börjar med 'on' för att sortera
+          bort properties som inte är event handlers</li>
+        <li>
+          <code>if( !== null)</code> kollar om en variabel eller property
+          pekar på ett objekt/funktion
+        </li>
+        <li>
+          <code>myFunc.toString()</code> ger funktionens källkod</li>
+        <li>Använd <a href="https://www.w3schools.com/tags/tag_span.asp" target="_blank">&lt;span></a> för att ändra färg
+        </li>
+      </ul>
+      <h3>Bonus:</h3>
+      <p>Det är många event handlers som inte används
+        hoppa över när det är flera i rad som inte används
+      </p>
+      <pre><code class="nohighlight">onabort      : not used
+...skipped 45 rows...
+onmouseleave : not used
+onmousemove  : (e) => { `x:${e.x} y:...
+onmouseout   : not used
+...skipped 23 rows...</code></pre>
+      <div id="q2" class="fx fx-row fx-center fx-space">
+        <div class="fx fx-col fx-space height-y">
+          <button id="q2_b1">Kolla testElement</button>
+          <button id="q2_b2" ondrag="console.log('ondrag')" onload="console.log('ondrag')">Kolla denna knappen</button>
+          <button id="q2_b3">Kolla DOM</button>
+        </div>
+        <div id="q2_out" class="scrollable-text output-box-width height-y">Skriv resultatet här</div>
+      </div>
+      <details>
+        <summary>Facit</summary>
+        <pre><code class="javascript">{
     let b1 = document.querySelector("#q2_b1");
     let b2 = document.querySelector("#q2_b2");
     let b3 = document.querySelector("#q2_b3");
@@ -99,15 +146,44 @@
     b2.onclick = function() { checkHtmlObjectEventHandlers(b1) };
     b3.onclick = function() { checkHtmlObjectEventHandlers(document) };
 }</code></pre>
-            </details>
-        </section>
-        <section>
-            <h2>Fråga 3</h2>
-            <div id="q3" class="fx fx-row fx-center fx-left">
-              <div class="fx fx-col">
-                <h3>Test JSON</h3>
-                <button id="q3_b1">tolka JSON </button>
-                <pre class="height-y"><code id="q3_j1" class="json scrollable-code height-y">{
+      </details>
+    </section>
+    <section>
+      <h2>Fråga 3</h2>
+      <p>Använd JSON.parse för att tolka de två första
+        JSON texterna. Kalla på alert med något medelande
+        som bygger på informationen i objekten.</p>
+      </p>
+      <p>För den sista knappen så ska du göra om teacher
+        till en JSON string och lägga in den i #q3_out</p>
+      <p>Sätt JSON strängen innuti ett 
+        <a href="https://www.w3schools.com/tags/tag_pre.asp" target="_blank">&lt;pre>&lt;/pre></a>
+        element innan du stoppar in det i #q3_out.
+        Det är för att nya rader ('\n') ska visas ordentligt.
+      </p>
+      <h3>Bonus:</h3>
+      <p>Datum informationen "dt" i den andra JSON strängen
+        är bara en stor siffra som är svårtolkad, men det
+        är egentligen ett datum.
+      </p>
+      <p>När vi kallar på JSON.parse så kan vi skicka med
+        en funktion kallad reviver, 'återupplivare'
+        som kan jobba lite extra och omvandla tex
+        "dt" från en siffra till ett datum
+      </p>
+      <p>Läs på lite om
+        <a href="https://www.w3schools.com/Jsref/jsref_parse_json.asp" target="_blank">
+          hur det fungerar</a>
+        och se till att alla datum blir JS Date objekt istället för siffor.
+      </p>
+      <p>(motsvarande finns för JSON.stringify med. då kallas
+        funktionen man skickar med för en replacer, 'ersättera')
+      </p>
+      <div id="q3" class="fx fx-row fx-center fx-left">
+        <div class="fx fx-col">
+          <h3>Test JSON</h3>
+          <button id="q3_b1">tolka JSON </button>
+          <pre class="height-y"><code id="q3_j1" class="json scrollable-code height-y">{
   "firstName": "John",
   "lastName": "Smith",
   "isAlive": true,
@@ -131,11 +207,11 @@
   "children": [],
   "spouse": null
 }</code></pre>
-              </div>
-              <div class="fx fx-col">
-                <h3>OpenWeather svarsdata</h3>
-                <button id="q3_b2">tolka JSON </button>
-                <pre class="height-y"><code id="q3_j2" class="json scrollable-code height-y">{
+        </div>
+        <div class="fx fx-col">
+          <h3><a href="https://openweathermap.org/current#current_JSON">OpenWeather</a> svarsdata</h3>
+          <button id="q3_b2">tolka JSON </button>
+          <pre class="height-y"><code id="q3_j2" class="json scrollable-code height-y">{
   "coord": {
     "lon": -122.08,
     "lat": 37.39
@@ -179,15 +255,15 @@
   "name": "Mountain View",
   "cod": 200
   }</code></pre>
-              </div>
-              <div class="fx fx-col">
-                <button id="q3_b3">teacher till JSON </button>
-                <div id="q3_out" class="scrollable-text height-y">Skriv resultatet här</div>
-              </div>
-            </div>
-            <details>
-                <summary>Facit</summary>
-                <pre><code class="javascript">{
+        </div>
+        <div class="fx fx-col">
+          <button id="q3_b3">teacher till JSON </button>
+          <div id="q3_out" class="scrollable-text height-y">Skriv resultatet här</div>
+        </div>
+      </div>
+      <details>
+        <summary>Facit</summary>
+        <pre><code class="javascript">{
     let b1 = document.querySelector("#q3_b1");
     let b2 = document.querySelector("#q3_b2");
     let b3 = document.querySelector("#q3_b3");
@@ -214,17 +290,17 @@ ${weather.main} with a ${weather.description}.`);
     b3.onclick = function (){
         let textbox = document.querySelector("#q3_out");
         textbox.innerHTML = `<pre>${JSON.stringify(teacher, null, ' ')}</pre>`;
+        };
+        }</code></pre>
+      </details>
+    </section>
+  </main>
+  <script>
+    // Ett litet script för att fixa facitkodens formatering
+    for (let elem of document.querySelectorAll(".javascript")) {
+      elem.innerHTML = elem.innerHTML.replace(/</g, "&lt;");
     };
-}</code></pre>
-            </details>
-        </section>
-    </main>
-    <script>
-      // Ett litet script för att fixa facitkodens formatering
-      for(let elem of document.querySelectorAll(".javascript")) {
-        elem.innerHTML = elem.innerHTML.replace(/</g, "&lt;");
-      };
-    </script>
+  </script>
 </body>
 
 </html>
