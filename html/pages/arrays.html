@@ -214,6 +214,119 @@ console.log(names.map((name) => name.split('').reverse().join('')));
           </div>
         </div>
       </section>
+      <!-- Fråga 9 -->
+      <section>
+        <h2>Fråga 9</h2>
+        <div id="q9">
+          <div class="fx fx-row fx-center parent">
+            <div class="box">
+              <p>
+                Skapa en array med fem olika nummer som du bestämmer själv.<br />
+                Använd array.reduce för att räkna ut produkten av alla nummer i arrayen (alltså
+                num1*num2*num3*num4*num5).<br />
+                TIPS. Använd Math.imul för att räkna ut produkten av två tal.<br />
+                Läs gärna på om hur reduce fungerar
+                https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
+              </p>
+            </div>
+            <div class="box">
+              <pre><code>
+const myArray = [2, 3, 6, 18, 108];
+console.log(myArray.reduce(Math.imul));
+</code></pre>
+            </div>
+            <div class="spoiler" onclick="closeSpoiler(event)">Klicka för att visa lösning</div>
+          </div>
+        </div>
+      </section>
+      <!-- Fråga 10 -->
+      <section>
+        <h2>Fråga 10</h2>
+        <div id="q10">
+          <div class="fx fx-row fx-center parent">
+            <div class="box">
+              <p>
+                Gör likadant som på förra uppgiften, men denna gång får du inte använda reduce utan ska istället göra en
+                egen loop som löser problemet.
+              </p>
+            </div>
+            <div class="box">
+              <pre><code>
+const myArray = [2, 3, 6, 18, 108];
+let product = myArray[0];
+for (let i = 1; i < myArray.length; i++) {
+  product *= myArray[i];
+}
+console.log(product);
+</code></pre>
+            </div>
+            <div class="spoiler" onclick="closeSpoiler(event)">Klicka för att visa lösning</div>
+          </div>
+        </div>
+      </section>
+      <!-- Fråga 11 -->
+      <section>
+        <h2>Fråga 11</h2>
+        <div id="q11">
+          <div class="fx fx-row fx-center parent">
+            <div class="box">
+              <p>
+                Skapa en array med alla nummer 1-50. Lättast är att skapa en loop som lägger in alla talen så slipper du
+                göra det manuellt. <br />
+                Skapa en funktion som heter fizzBuzz som tar emot en sträng och ett tal och lägger ihop dessa. Men om
+                talet är jämnt delbar med 3 ska talet bytas ut mot Buzz, om talet är jämnt delbar med 5 ska talet bytas
+                ut mot Fizz och om talet är jämnt delbart med både 3 och 5 ska talet bvytas ut mot Fizz Buzz. Använd sen
+                array.reduce och fizzBuzz för att skriva ut hela arrayen med nummer.
+              </p>
+            </div>
+            <div class="box">
+              <pre><code>
+const myArray = [];
+for (let i = 1; i <= 50; i++) {
+  myArray.push(i);
+}
+function fizzBuzz(accumulator, curr) {
+  if (curr % 15 === 0) return `${accumulator} Fizz Buzz `;
+  if (curr % 5 === 0) return `${accumulator} Fizz `;
+  if (curr % 3 === 0) return `${accumulator} Buzz `;
+  return `${accumulator}${curr}`;
+}
+console.log(myArray.reduce(fizzBuzz));
+</code></pre>
+            </div>
+            <div class="spoiler" onclick="closeSpoiler(event)">Klicka för att visa lösning</div>
+          </div>
+        </div>
+      </section>
+      <!-- Fråga 12 -->
+      <section>
+        <h2>Fråga 12</h2>
+        <div id="q12">
+          <div class="fx fx-row fx-center parent">
+            <div class="box">
+              <p>Gör likadant som förra gången men ersätt fizzBuzz med en arrow funktion direkt i reduce.</p>
+            </div>
+            <div class="box">
+              <pre><code>
+const myArray = [];
+for (let i = 1; i <= 50; i++) {
+  myArray.push(i);
+}
+console.log(
+  myArray.reduce((accumulator, curr) => {
+    if (curr % 15 === 0) return `${accumulator} Fizz Buzz `;
+    if (curr % 5 === 0) return `${accumulator} Fizz `;
+    if (curr % 3 === 0) return `${accumulator} Buzz `;
+    return `${accumulator}${curr}`;
+  })
+);
+
+</code></pre>
+            </div>
+            <div class="spoiler" onclick="closeSpoiler(event)">Klicka för att visa lösning</div>
+          </div>
+        </div>
+      </section>
     </main>
   </body>
 </html>
