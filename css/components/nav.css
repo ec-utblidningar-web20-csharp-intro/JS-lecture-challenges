@@ -1,5 +1,6 @@
 nav {
     height: 100px;
+    width: 100%;
     background-color: black;
     display: flex;
 }
@@ -18,5 +19,5 @@ nav > a:link, nav > a:visited {
   }
   
 nav > a:hover, nav > a:active {
-background-color: red;
+    background-color: red;
 }

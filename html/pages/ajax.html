@@ -7,12 +7,15 @@
   <title>Funktioner</title>
   <base href="../../">
 
+  <!-- Whole website -->
   <link rel="stylesheet" href="css/general.css">
   <script src="js/component.js"></script>
 
-  <link rel="stylesheet" href="css/pages/object.css">
-  <script defer="true" src="js/pages/object_frågor.js"></script>
-  <script defer="true" src="js/pages/object_övning.js"></script>
+  <!-- Page specific -->
+  <link rel="stylesheet" href="css/pages/ajax.css">
+
+  <script defer="true" src="js/pages/ajax_övning.js"></script>
+  <script defer="true" src="js/pages/ajax_frågor.js"></script>
 
   <link rel="stylesheet" href="lib/highlight/styles/xcode.css">
   <script src="lib/highlight/highlight.pack.js"></script>
@@ -24,97 +27,76 @@
   <main class="fx fx-center fx-col">
     <section>
       <h2>Fråga 1</h2>
-      <p>Skriv en funktion som loopar igenom alla keys i ett objekt
-        och skriver ut alla properties och vilken typ de är.
+      <p>Använd <a href="https://javascript.info/url" target="_blank">URL</a> objektet för att bygga ett API
+        anrop till <a href="https://openweathermap.org/current#name" target="_blank">OpenWeather</a>
+        för att få tag på info om vädret i staden du är just nu. Skriv ut url:n i frågefönstret.
+      </p>
+      <p>
+        Lek runt med URL objektet i dev konsollen inne i Chrome innan
+        du löser uppgiften. Då får du en bra insyn i vad som finns i URL objektet
+        och vad som händer när man kallar på metoderna och ändrar på properties.
       </p>
       <ul>
-        <li>Använd <a href="https://www.w3schools.com/jsref/jsref_forin.asp" target="_blank"><code>for( in )</code></a>
-          för att
-          loopa. </li>
-        <li>Använd <code>typeof</code> för att kolla typen på value</li>
-        <li>Använd <code>&lt;br/></code> för radbyte</li>
+        <li>Börja med pre<code>new URL('https://api.openweathermap.org/data/2.5/weather')</code></li>
+        <li>Fyll på search parametrar via metoderna i url.searchParams</li>
+        <li>Bygg en url som använder alla parametrar under 'Parameters'</li>
       </ul>
       <h3>Bonus:</h3>
-      <p>Använd <a href="https://www.w3schools.com/tags/tag_span.asp" target="_blank">&lt;span></a>
-        för att ändra färg beroende på typ av value.
-        <code>string</code> blir <span style="color: green;">grön</span>,
-        <code>number</code> blir <span style="color: red;">röd</span> etc.
+      <p>Prompta att användaren får välja stad via 
+        <a href="https://www.w3schools.com/jsref/met_win_prompt.asp" target="_blank">prompt()</a>
       </p>
       <div id="q1" class="fx fx-row fx-center fx-space">
-        <div class="fx fx-col fx-space height-y">
-          <button id="q1_b1">Kolla teacher</button>
-          <button id="q1_b2">Kolla window.console</button>
-          <button id="q1_b3">Kolla DOM</button>
-        </div>
-        <div id="q1_out" class="scrollable-text output-box-width height-y">Skriv resultatet här</div>
+        <pre id="q1_out">Skriv url:n här</pre>
       </div>
       <details>
         <summary>Facit</summary>
-        <pre><code class="javascript">{
-    let b1 = document.querySelector("#q1_b1");
-    let b2 = document.querySelector("#q1_b2");
-    let b3 = document.querySelector("#q1_b3");
+        <pre><code class="javascript">let url = new URL("https://api.openweathermap.org/data/2.5/weather");
+url.searchParams.set("q", "Varberg,Sweden");
+url.searchParams.set("appid", "din_hashkod_här");
+url.searchParams.set("mode", "html");
+url.searchParams.set("units", "metric");
+url.searchParams.set("lang", "se");
 
-    // anonym funktion sparad i en variabel för att hålla definitionen lokalt
-    let checkObjectKeys = function (obj){
-        let textbox = document.querySelector("#q1_out");
-        let output = "";
+for(let [key, val] in url.searchParams){
+  console.log(`${key}:${val}`);
+}
 
-        // loopa över alla nyklar/properties i objektet
-        for(let key in obj){
-            output += `${key}: ${typeof obj[key]} <br/>`;
-        }
-        
-        textbox.innerHTML = output;
-    }
-
-    b1.onclick = function() { checkObjectKeys(teacher) };
-    b2.onclick = function() { checkObjectKeys(window.console) };
-    b3.onclick = function() { checkObjectKeys(document) };
-}</code></pre>
+document.querySelector("#q1_out").innerText = url;</code></pre>
       </details>
     </section>
     <section>
       <h2>Fråga 2</h2>
-      <p>Funktioner är inte bara en lista med instruktioner,
-        funktioner är också objekt, med sina egna key/value pairs
+      <p>Skapa ett <a href="https://javascript.info/xmlhttprequest" target="_blank">XMLHttpRequest</a> objekt för att skicka en
+        begäran till url:n i Fråga 1
       </p>
-      <p>Skriv en funktion som kollar på ett HTML objekts
-        event handlers ('myObj.onclick etc.') och dimmar
-        ut de som är 'undefined' samt visar en snutt av
-        källkoden om det finns en handler funktion registrerad
+      <p>
+        Här är de viktigaste stegen:
       </p>
       <ul>
-        <li>kolla om nyckeln börjar med 'on' för att sortera
-          bort properties som inte är event handlers</li>
+        <li>Skapa ett objekt med <code>new</code></li>
         <li>
-          <code>if( !== null)</code> kollar om en variabel eller property
-          pekar på ett objekt/funktion
+          kalla på <code>open()</code> för att ställa in destination
         </li>
         <li>
-          <code>myFunc.toString()</code> ger funktionens källkod
+          kalla på <code>send()</code> för att påbörja kommunikationen
         </li>
-        <li>Använd <a href="https://www.w3schools.com/tags/tag_span.asp" target="_blank">&lt;span></a> för att ändra
-          färg
+        <li>
+          bind onload eventet för att göra något med resultatet. (p.s. kolla status kod 200)
+        </li>
+        <li>
+          bind onerror eventet för att debugga om något går snett
         </li>
       </ul>
       <h3>Bonus:</h3>
-      <p>Det är många event handlers som inte används
-        hoppa över när det är flera i rad som inte används
+      <p>Pröva att binda till onprogress eventet och skapa någon 
+        slags enkel visuell indikator över hur långt nerladdningen kommit.
+        <a href="ftp://speedtest.tele2.net/">Tele2</a> har en en bra FTP server 
+        som kan användas för att testa ladda ner större filer. Ta bara 
+        länken ftp://speedtest.tele2.net/ och lägg till
+        filnament på den filen du vill ladda ner.
       </p>
-      <pre><code class="nohighlight">onabort      : not used
-...skipped 45 rows...
-onmouseleave : not used
-onmousemove  : (e) => { `x:${e.x} y:...
-onmouseout   : not used
-...skipped 23 rows...</code></pre>
       <div id="q2" class="fx fx-row fx-center fx-space">
-        <div class="fx fx-col fx-space height-y">
-          <button id="q2_b1">Kolla testElement</button>
-          <button id="q2_b2" ondrag="console.log('ondrag')" onload="console.log('ondrag')">Kolla denna knappen</button>
-          <button id="q2_b3">Kolla DOM</button>
-        </div>
-        <div id="q2_out" class="scrollable-text output-box-width height-y">Skriv resultatet här</div>
+        <pre id="q2_out">Skriv ut json svarstexten här</pre>
       </div>
       <details>
         <summary>Facit</summary>
