@@ -42,7 +42,7 @@
         <li>Bygg en url som använder alla parametrar under 'Parameters'</li>
       </ul>
       <h3>Bonus:</h3>
-      <p>Prompta att användaren får välja stad via 
+      <p>Prompta att användaren får välja stad via
         <a href="https://www.w3schools.com/jsref/met_win_prompt.asp" target="_blank">prompt()</a>
       </p>
       <div id="q1" class="fx fx-row fx-center fx-space">
@@ -50,35 +50,35 @@
       </div>
       <details>
         <summary>Facit</summary>
-        <pre><code class="javascript">let url = new URL("https://api.openweathermap.org/data/2.5/weather");
-url.searchParams.set("q", "Varberg,Sweden");
-url.searchParams.set("appid", "din_hashkod_här");
-url.searchParams.set("mode", "html");
-url.searchParams.set("units", "metric");
-url.searchParams.set("lang", "se");
+        <pre><code class="javascript">
+  let url = new URL("https://api.openweathermap.org/data/2.5/weather");
 
-for(let [key, val] in url.searchParams){
-  console.log(`${key}:${val}`);
-}
+  url.searchParams.set("q", "Varberg,Sweden");
+  url.searchParams.set("appid", "din_hashkod_här");
+  url.searchParams.set("mode", "json");
+  url.searchParams.set("units", "metric");
+  url.searchParams.set("lang", "se");
 
-document.querySelector("#q1_out").innerText = url;</code></pre>
+  for (let [key, val] of url.searchParams) {
+    console.log(`${key}:${val}`);
+  }
+
+  document.querySelector("#q1_out").innerText = url;</code></pre>
       </details>
     </section>
     <section>
       <h2>Fråga 2</h2>
-      <p>Skapa ett <a href="https://javascript.info/xmlhttprequest" target="_blank">XMLHttpRequest</a> objekt för att skicka en
+      <p>Skapa ett <a href="https://javascript.info/xmlhttprequest" target="_blank">XMLHttpRequest</a> objekt för att
+        skicka en
         begäran till url:n i Fråga 1
       </p>
       <p>
         Här är de viktigaste stegen:
       </p>
-      <ul>
+      <ol>
         <li>Skapa ett objekt med <code>new</code></li>
         <li>
           kalla på <code>open()</code> för att ställa in destination
-        </li>
-        <li>
-          kalla på <code>send()</code> för att påbörja kommunikationen
         </li>
         <li>
           bind onload eventet för att göra något med resultatet. (p.s. kolla status kod 200)
@@ -86,164 +86,60 @@ document.querySelector("#q1_out").innerText = url;</code></pre>
         <li>
           bind onerror eventet för att debugga om något går snett
         </li>
-      </ul>
+        <li>
+          kalla på <code>send()</code> för att påbörja kommunikationen
+        </li>
+      </ol>
       <h3>Bonus:</h3>
-      <p>Pröva att binda till onprogress eventet och skapa någon 
+      <p>Pröva att binda till onprogress eventet och skapa någon
         slags enkel visuell indikator över hur långt nerladdningen kommit.
-        <a href="ftp://speedtest.tele2.net/">Tele2</a> har en en bra FTP server 
-        som kan användas för att testa ladda ner större filer. Ta bara 
-        länken ftp://speedtest.tele2.net/ och lägg till
-        filnament på den filen du vill ladda ner.
+        <a href="ftp://speedtest.tele2.net/">Tele2</a> har en en bra FTP server
+        som kan användas för att testa ladda ner större filer. Ta bara
+        länken "ftp://speedtest.tele2.net/" + filnamnet på den filen du vill ladda ner.
       </p>
       <div id="q2" class="fx fx-row fx-center fx-space">
-        <pre id="q2_out">Skriv ut json svarstexten här</pre>
+        <pre id="q2_out">Skriv ut resultatet här</pre>
       </div>
       <details>
         <summary>Facit</summary>
-        <pre><code class="javascript">{
-    let b1 = document.querySelector("#q2_b1");
-    let b2 = document.querySelector("#q2_b2");
-    let b3 = document.querySelector("#q2_b3");
+        <pre><code class="javascript">  {
+    let out = document.querySelector("#q2_out");
+    let xhr = new XMLHttpRequest();
 
-    // anonym funktion sparad i en variabel för att hålla definitionen lokalt
-    let checkHtmlObjectEventHandlers = function (obj){
-        let textbox = document.querySelector("#q2_out");
-        let output = "";
+    xhr.open("GET", url);
+    xhr.responseType = "json";
 
-        // loopa över alla nyklar/properties i objektet
-        for(let key in obj){
-            if(!key.startsWith("on")) { continue; }
+    xhr.onload = function (e) {
+      //'e.target' kommer här att peka på XMLHttpRequest objektet
+      console.log(`Weather request status: ${e.target.status} ${e.target.statusText}`);
 
-            if(obj[key] === null){
-                output += `<span style="color:grey">${key}: not used </span><br/>`;
-            }
-            else{
-                let handlerFunction = obj[key]
-                output += `${key}: ${handlerFunction}<br/>`;
-            }
-        }
-        
-        textbox.innerHTML = output;
-    }
+      if(e.target.status === 200){ // Begäran lyckades
+        let jsObjekt = e.target.response;
+        out.innerText = JSON.stringify(jsObjekt, null, ' ');
+      }
+    };
 
-    b1.onclick = function() { checkHtmlObjectEventHandlers(testElement) };
-    b2.onclick = function() { checkHtmlObjectEventHandlers(b1) };
-    b3.onclick = function() { checkHtmlObjectEventHandlers(document) };
-}</code></pre>
+    xhr.onerror = function (e) {
+      console.log(url.origin + " could not be reached");
+    };
+
+    xhr.send();
+  }</code></pre>
       </details>
     </section>
     <section>
       <h2>Fråga 3</h2>
-      <p>Använd JSON.parse för att tolka de två första
-        JSON texterna. Kalla på alert med något medelande
-        som bygger på informationen i objekten.</p>
+      <p>Nu är det dags att göra arbete som tar längre tid.
+        I detta fallet handlar det om att flytta en boll
+        runt alla hörn längs en bana när man klickar på den.
+        Använd <a href="https://www.w3schools.com/jsref/met_win_settimeout.asp"
+          target="_blank"><code>setTimeout()</code></a>
+        för att sprida ut dina instruktioner i tid.
       </p>
-      <p>För den sista knappen så ska du göra om teacher
-        till en JSON string och lägga in den i #q3_out</p>
-      <p>Sätt JSON strängen innuti ett
-        <a href="https://www.w3schools.com/tags/tag_pre.asp" target="_blank">&lt;pre>&lt;/pre></a>
-        element innan du stoppar in det i #q3_out.
-        Det är för att nya rader ('\n') ska visas ordentligt.
+      <p>Knepet här ligger i att
       </p>
-      <h3>Bonus:</h3>
-      <p>Datum informationen "dt" i den andra JSON strängen
-        är bara en stor siffra som är svårtolkad, men det
-        är egentligen ett datum.
-      </p>
-      <p>När vi kallar på JSON.parse så kan vi skicka med
-        en funktion kallad reviver, 'återupplivare'
-        som kan jobba lite extra och omvandla tex
-        "dt" från en siffra till ett datum
-      </p>
-      <p>Läs på lite om
-        <a href="https://www.w3schools.com/Jsref/jsref_parse_json.asp" target="_blank">
-          hur det fungerar</a>
-        och se till att alla datum blir JS Date objekt istället för siffor.
-      </p>
-      <p>(motsvarande finns för JSON.stringify med. då kallas
-        funktionen man skickar med för en replacer, 'ersättera')
-      </p>
-      <div id="q3" class="fx fx-row fx-center fx-left">
-        <div class="fx fx-col">
-          <h3>Test JSON</h3>
-          <button id="q3_b1">tolka JSON </button>
-          <pre class="height-y"><code id="q3_j1" class="json scrollable-code height-y">{
-  "firstName": "John",
-  "lastName": "Smith",
-  "isAlive": true,
-  "age": 27,
-  "address": {
-    "streetAddress": "21 2nd Street",
-    "city": "New York",
-    "state": "NY",
-    "postalCode": "10021-3100"
-  },
-  "phoneNumbers": [
-    {
-      "type": "home",
-      "number": "212 555-1234"
-    },
-    {
-      "type": "office",
-      "number": "646 555-4567"
-    }
-  ],
-  "children": [],
-  "spouse": null
-}</code></pre>
-        </div>
-        <div class="fx fx-col">
-          <h3><a href="https://openweathermap.org/current#current_JSON">OpenWeather</a> svarsdata</h3>
-          <button id="q3_b2">tolka JSON </button>
-          <pre class="height-y"><code id="q3_j2" class="json scrollable-code height-y">{
-  "coord": {
-    "lon": -122.08,
-    "lat": 37.39
-  },
-  "weather": [
-    {
-      "id": 800,
-      "main": "Clear",
-      "description": "clear sky",
-      "icon": "01d"
-    }
-  ],
-  "base": "stations",
-  "main": {
-    "temp": 282.55,
-    "feels_like": 281.86,
-    "temp_min": 280.37,
-    "temp_max": 284.26,
-    "pressure": 1023,
-    "humidity": 100
-  },
-  "visibility": 16093,
-  "wind": {
-    "speed": 1.5,
-    "deg": 350
-  },
-  "clouds": {
-    "all": 1
-  },
-  "dt": 1560350645,
-  "sys": {
-    "type": 1,
-    "id": 5122,
-    "message": 0.0139,
-    "country": "US",
-    "sunrise": 1560343627,
-    "sunset": 1560396563
-  },
-  "timezone": -25200,
-  "id": 420006353,
-  "name": "Mountain View",
-  "cod": 200
-  }</code></pre>
-        </div>
-        <div class="fx fx-col">
-          <button id="q3_b3">teacher till JSON </button>
-          <div id="q3_out" class="scrollable-text height-y">Skriv resultatet här</div>
-        </div>
+      <div id="q3" class="fx fx-row fx-center">
+        <div class="edge"><div class="ball"></div></div>
       </div>
       <details>
         <summary>Facit</summary>
