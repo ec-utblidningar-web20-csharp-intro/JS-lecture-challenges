@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="css/pages/ajax.css">
 
   <script defer="true" src="js/pages/ajax/övning.js"></script>
-  <script defer="true" src="js/pages/ajax/sfrågor.js"></script>
+  <script defer="true" src="js/pages/ajax/frågor.js"></script>
 
   <link rel="stylesheet" href="lib/highlight/styles/xcode.css">
   <script src="lib/highlight/highlight.pack.js"></script>
@@ -66,6 +66,7 @@
   document.querySelector("#q1_out").innerText = url;</code></pre>
       </details>
     </section>
+    <img style="width: 40%; margin: 40px 0px 0px 0px;" src="https://www.w3schools.com/js/pic_ajax.gif" alt="">
     <section>
       <h2>Fråga 2</h2>
       <p>Skapa ett <a href="https://javascript.info/xmlhttprequest" target="_blank">XMLHttpRequest</a> objekt för att
@@ -79,6 +80,9 @@
         <li>Skapa ett objekt med <code>new</code></li>
         <li>
           kalla på <code>open()</code> för att ställa in destination
+        </li>
+        <li>
+          sätt <code>responseType</code> till vilken typ av svar du vill ha
         </li>
         <li>
           bind onload eventet för att göra något med resultatet. (p.s. kolla status kod 200)
@@ -114,8 +118,8 @@
       console.log(`Weather request status: ${e.target.status} ${e.target.statusText}`);
 
       if(e.target.status === 200){ // Begäran lyckades
-        let jsObjekt = e.target.response;
-        out.innerText = JSON.stringify(jsObjekt, null, ' ');
+        let objekt = e.target.response;
+        out.innerText = JSON.stringify(objekt, null, ' ');
       }
     };
 
@@ -129,7 +133,7 @@
     </section>
     <section>
       <h2>Fråga 3</h2>
-      <p>Det finns ett alternativ AJAX API till <code>XMLHttpRequest</code> som
+      <p>Det finns en alternativ AJAX api till <code>XMLHttpRequest</code> som
         heter <a href="https://javascript.info/fetch" target="_blank"><code>fetch()</code></a>
         och är betydligt lättare att använda, men som bygger på två koncept
         kallat <code>Promise</code> och <code>async/await</code>.
@@ -137,11 +141,18 @@
         på hur det fungerar så kommer resten av frågorna att stegvis förklara logiken bakom.
       </p>
       <div id="q3" class="fx fx-row fx-center">
-        <pre id="q2_out">Skriv ut resultatet här</pre>
+        <pre id="q3_out">Skriv ut resultatet här</pre>
       </div>
       <details>
         <summary>Facit</summary>
-        <pre><code class="javascript"></code></pre>
+        <pre><code class="javascript">(async function () {
+    let out = document.querySelector("#q3_out");
+
+    let response = await fetch(url);
+    let object = await response.json();
+
+    out.innerText = JSON.stringify(object, null, " ");
+  })();</code></pre>
       </details>
     </section>
     <section>
@@ -170,7 +181,32 @@
       </div>
       <details>
         <summary>Facit</summary>
-        <pre><code class="javascript"></code></pre>
+        <pre><code class="javascript">{
+    let ball = document.querySelector("#q4 .ball");
+    ball.addEventListener("click", moveSequence, { once: true });
+
+    function moveSequence(e) {
+      ball.classList.add("not-clickable");
+      ball.style.animation = "move-down 1s 1";
+
+      setTimeout(function () {
+        ball.style.animation = "move-right 1s 1";
+
+        setTimeout(function () {
+          ball.style.animation = "move-up 1s 1";
+
+          setTimeout(function () {
+            ball.style.animation = "move-left 1s 1";
+
+            setTimeout(function () {
+              ball.classList.remove("not-clickable");
+              ball.addEventListener("click", moveSequence, { once: true });
+            }, 1000);
+          }, 1000);
+        }, 1000);
+      }, 1000);
+    }
+  }</code></pre>
       </details>
     </section>
     <section>
@@ -184,28 +220,98 @@
       </div>
       <details>
         <summary>Facit</summary>
-        <pre><code class="javascript"></code></pre>
+        <pre><code class="javascript">{
+    let ball = document.querySelector("#q5 .ball");
+    ball.addEventListener("click", moveSequence, { once: true });
+
+    async function moveSequence(e) {
+      ball.classList.add("not-clickable");
+
+      ball.style.animation = "move-down 1s 1";
+      await defer(1000);
+
+      ball.style.animation = "move-right 1s 1";
+      await defer(1000);
+
+      ball.style.animation = "move-up 1s 1";
+      await defer(1000);
+
+      ball.style.animation = "move-left 1s 1";
+      await defer(1000);
+
+      ball.classList.remove("not-clickable");
+      ball.style.animation = "";
+      ball.addEventListener("click", moveSequence, { once: true });
+    }
+
+    function defer(ms) {
+      return new Promise(function (resolve) {
+        setTimeout(resolve, ms);
+      });
+    }
+  }</code></pre>
       </details>
     </section>
     <section>
       <h2>Fråga 6</h2>
       <p>
-        Denna fråga handlar om att använda <code>Promise.all()</code> för att
-        vänta på en hel array med 
+        Denna fråga handlar om att vänta på en massa async funktioner samtidigt. 
+        Istället för att köra-vänta-köra-vänta i serie så ska du köra-alla-vänta-på-alla tills det att alla är klara.
       </p>
-      <p>Knepet här ligger i att
+      <p>Knepet här ligger i att först samla alla sina promises som man vill vänta på
+        i en array istället för att awaita dem direkt. Sen är det bara att loopa igenom 
+        och vänta på dem en och en med <code>await</code>.
       </p>
       <div id="q6" class="fx fx-row fx-center">
         <div class="edge">
-          <div class="ball" id="b1"></div>
-          <div class="ball" id="b2"></div>
-          <div class="ball" id="b3"></div>
-          <div class="ball" id="b4"></div>
+          <div class="ball" style="top: 0%;"></div>
+          <div class="ball" style="top: 33%;"></div>
+          <div class="ball" style="top: 66%;"></div>
+          <div class="ball" style="top: 100%;"></div>
         </div>
       </div>
       <details>
         <summary>Facit</summary>
-        <pre><code class="javascript"></code></pre>
+        <pre><code class="javascript">  {
+    let balls = document.querySelectorAll("#q6 .ball");
+    for(let ball of balls){
+      ball.addEventListener("click", moveSequence);
+    }
+    
+    
+    async function moveSequence(e) {
+      for(let ball of balls){
+        ball.classList.add("not-clickable");
+        ball.removeEventListener("click", moveSequence);
+      }
+      
+      let promises = [
+        moveBallAndWait(balls[0], 1),
+        moveBallAndWait(balls[1], 3),
+        moveBallAndWait(balls[2], 1.5),
+        moveBallAndWait(balls[3], 2),
+      ];
+    
+      await Promise.all(promises);
+
+      for(let ball of balls){
+        ball.classList.remove("not-clickable");
+        ball.style.animation = "";
+        ball.addEventListener("click", moveSequence);
+      }
+    }
+
+    async function moveBallAndWait(ball, s) {
+      ball.style.animation = `lat-move ${s}s 1`;
+      await defer(s * 1000);
+    }
+
+    function defer(ms) {
+      return new Promise(function (resolve) {
+        setTimeout(resolve, ms);
+      });
+    }
+  }</code></pre>
       </details>
     </section>
   </main>
