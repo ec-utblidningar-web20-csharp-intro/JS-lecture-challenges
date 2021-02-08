@@ -48,11 +48,23 @@
   /* 
    [Fråga 3]
   */
+  (async function(){
+    let out = document.querySelector("#q3_out");
+
+    let response = await fetch(url);
+    let object = await response.json();
+    
+    out.innerText = JSON.stringify(object, null, " ");
+  })();
+  /* 
+   [Fråga 4]
+  */
   {
-    let ball = document.querySelector("#q3 .ball");
-    //ball.addEventListener("click", moveSequence, { once: true });
+    let ball = document.querySelector("#q4 .ball");
+    ball.addEventListener("click", moveSequence, { once: true });
 
     function moveSequence(e) {
+      ball.classList.add("not-clickable");
       ball.style.animation = "m1 1s 1";
 
       setTimeout(function () {
@@ -65,6 +77,7 @@
             ball.style.animation = "m4 1s 1";
 
             setTimeout(function () {
+              ball.classList.remove("not-clickable");
               ball.addEventListener("click", moveSequence, { once: true });
             }, 1000);
           }, 1000);
@@ -73,13 +86,15 @@
     }
   }
   /* 
-   [Fråga 4]
+   [Fråga 5]
   */
   {
-    let ball = document.querySelector("#q3 .ball");
+    let ball = document.querySelector("#q5 .ball");
     ball.addEventListener("click", moveSequence, { once: true });
 
     async function moveSequence(e) {
+      ball.classList.add("not-clickable");
+
       ball.style.animation = "m1 1s 1";
       await defer(1000);
 
@@ -92,9 +107,10 @@
       ball.style.animation = "m4 1s 1";
       await defer(1000);
       
+      ball.classList.remove("not-clickable");
       ball.addEventListener("click", moveSequence, { once: true });
     }
-
+    
     function defer(ms){
       return new Promise(function(resolve) {
         setTimeout(resolve, ms);
@@ -102,6 +118,6 @@
     }
   }
   /* 
-   [Fråga 5]
+   [Fråga 6]
   */
 }
