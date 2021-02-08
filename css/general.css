@@ -4,6 +4,10 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+code {
+  font-size: large;
+}
+
 main > section {
   width: 80%;
   max-width: 20cm;

@@ -33,6 +33,19 @@
   transform: translate(-25px, -25px);
 }
 
+.not-clickable{
+  background: rgb(255, 102, 0);
+}
+
+@keyframes lat-move {
+  from {
+    left: 0%;
+  }
+  to {
+    left: 100%;
+  }
+}
+
 @keyframes m1 {
   from {
     left: 0%;
