@@ -45,12 +45,12 @@
 
       let obj = JSON.parse(xhr.response);
 
-      let essentials = { 
-        city: obj.name, 
+      let essentials = {
+        city: obj.name,
         time: obj.dt,
         weather: obj.weather[0].main,
       };
-      
+
       useObject(essentials);
     };
 
@@ -59,7 +59,7 @@
 
   outputElement = document.querySelector("#q2_out");
 
-  getCityWeatherInfo("Göteborg", function(info){
+  getCityWeatherInfo("Göteborg", function (info) {
     // instruktioner för när jag har fått informationen
     outputElement.innerText = info.city;
   });
@@ -85,6 +85,7 @@
   /* 
    [Fråga 5]
   */
+
   function defer(ms) {
     return new Promise(function (resolve) {
       setTimeout(resolve, ms);

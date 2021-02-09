@@ -102,6 +102,7 @@
   let button = document.querySelector("#q3_btn");
   let outputElement = document.querySelector("#q3_out");
 
+  // utan callbacks
   button.onclick = async function() {
     // Från här(1)
     const url = getCityWeatherUrl("Halmstad");
@@ -115,6 +116,50 @@
 
     outputElement.innerText = info.name;
     // Till här(3) reagerar vi på att svars objektet skapades
+  }
+
+  // med callbacks
+  button.onclick = function() {
+    // Från här(1)
+    const url = getCityWeatherUrl("Halmstad");
+
+    let promise = fetch(url);
+    promise.then(function (serverResponse){
+      // Från här(2)
+      let promise = serverResponse.json();
+      promise.then(function (info){
+        // Från här(3)
+        outputElement.innerText = info.weather[0].main;
+        // Till här(3) reagerar vi på att svars objektet skapades
+        console.log("end of object creation reaction");
+      });
+      // Till här(2) reagerar vi på att servern svarade
+      console.log("end of server response reaction");
+    });
+    // Till här(1) reagerar vi på att användaren klickade på knappen
+    console.log("end of button reaction");
+  }
+  
+  // med callbacks 2.0
+  button.onclick = function() {
+    // Från här(1)
+    const url = getCityWeatherUrl("Halmstad");
+
+    fetch(url)
+      .then(function (serverResponse){
+        // Från här(2)
+        console.log("end of server response reaction");
+        return serverResponse.json();
+        // Till här(2) reagerar vi på att servern svarade
+      })
+      .then(function (info){
+        // Från här(3)
+        outputElement.innerText = info.weather[0].main;
+        // Till här(3) reagerar vi på att svars objektet skapades
+        console.log("end of object creation reaction");
+      });
+    // Till här(1) reagerar vi på att användaren klickade på knappen
+    console.log("end of button reaction");
   }
 
   /* 
