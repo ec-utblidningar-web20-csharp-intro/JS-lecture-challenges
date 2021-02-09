@@ -103,6 +103,11 @@
         som kan användas för att testa ladda ner större filer. Ta bara
         länken "ftp://speedtest.tele2.net/" + filnamnet på den filen du vill ladda ner.
       </p>
+      <p>
+        Använd <a href="https://developer.mozilla.org/en-US/docs/Web/API/ProgressEvent" target="_blank">progress
+          objektet</a>
+        som skickas med som parameter.
+      </p>
       <div id="q2" class="fx fx-row fx-center fx-space">
         <pre id="q2_out">Skriv ut resultatet här</pre>
       </div>
@@ -143,6 +148,7 @@
         på hur det fungerar så kommer resten av frågorna att stegvis förklara logiken bakom.
       </p>
       <div id="q3" class="fx fx-row fx-center">
+        <button id="q3_btn">Contact Server</button>
         <pre id="q3_out">Skriv ut resultatet här</pre>
       </div>
       <details>
@@ -171,7 +177,7 @@
         en bestämd tid eller på användaren eller på
         en HTTP begäran, så använder vi oss av en callback
         (en funktion som vi delar ut som kommer att kallas på längre fram i tiden av browsern)
-        för att styra vad som ska ske efter tidshoppet. Funktionerna vi sätter på events 
+        för att styra vad som ska ske efter tidshoppet. Funktionerna vi sätter på events
         (s.k. event handlers) är också callbacks som händer lägre fram i tiden.
       </p>
       <p>Det knepiga med denna
@@ -179,7 +185,9 @@
         callbackfunktioner att behöva skapa ytterligare callbackfunktioner.
       </p>
       <div id="q4" class="fx fx-row fx-center">
-        <div class="edge"><div class="ball"></div></div>
+        <div class="edge">
+          <div class="ball"></div>
+        </div>
       </div>
       <details>
         <summary>Facit</summary>
@@ -218,7 +226,9 @@
         med denna funktionen för att slippa nästlade callbacks och återgå till ett kodflow utan indentering.
       </p>
       <div id="q5" class="fx fx-row fx-center">
-        <div class="edge"><div class="ball"></div></div>
+        <div class="edge">
+          <div class="ball"></div>
+        </div>
       </div>
       <details>
         <summary>Facit</summary>
@@ -257,11 +267,11 @@
     <section>
       <h2>Fråga 6</h2>
       <p>
-        Denna fråga handlar om att vänta på en massa async funktioner samtidigt. 
+        Denna fråga handlar om att vänta på en massa async funktioner samtidigt.
         Istället för att köra-vänta-köra-vänta i serie så ska du köra-alla-vänta-på-alla tills det att alla är klara.
       </p>
       <p>Knepet här ligger i att först samla alla sina promises som man vill vänta på
-        i en array istället för att awaita dem direkt. Sen är det bara att loopa igenom 
+        i en array istället för att awaita dem direkt. Sen är det bara att loopa igenom
         och vänta på dem en och en med <code>await</code>.
       </p>
       <div id="q6" class="fx fx-row fx-center">

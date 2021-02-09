@@ -3,11 +3,16 @@
   /*
    [Fråga 1]
   */
-  const outputElement = document.querySelector("#q1_out");
+  let outputElement = document.querySelector("#q1_out");
 
-  function getCityWeatherUrl(cityName){
-    const url = new URL('https://api.openweathermap.org/data/2.5/weather');
-    
+  function getCityWeatherUrl(cityName) {
+    const url = new URL("https://api.openweathermap.org/data/2.5/weather");
+
+    url.searchParams.append("appid", "ac5d516646126253361022bafa972296");
+    url.searchParams.append("mode", "json");
+    url.searchParams.append("units", "metric");
+    url.searchParams.append("lang", "se");
+    url.searchParams.append("q", cityName);
     url.searchParams.append("appid", "ac5d516646126253361022bafa972296");
     url.searchParams.append("mode", "json");
     url.searchParams.append("units", "metric");
@@ -25,6 +30,39 @@
   /* 
    [Fråga 2]
   */
+  function getCityWeatherInfo(cityName, useObject) {
+    const url = getCityWeatherUrl(cityName);
+
+    let xhr = new XMLHttpRequest();
+
+    xhr.open("GET", url);
+
+    xhr.responsType = "json";
+
+    xhr.onload = function () {
+      console.log(xhr.status + " " + xhr.statusText);
+      console.log(xhr.response);
+
+      let obj = JSON.parse(xhr.response);
+
+      let essentials = { 
+        city: obj.name, 
+        time: obj.dt,
+        weather: obj.weather[0].main,
+      };
+      
+      useObject(essentials);
+    };
+
+    xhr.send();
+  }
+
+  outputElement = document.querySelector("#q2_out");
+
+  getCityWeatherInfo("Göteborg", function(info){
+    // instruktioner för när jag har fått informationen
+    outputElement.innerText = info.city;
+  });
 
   /* 
    [Fråga 3]
@@ -58,13 +96,12 @@
   */
   {
     let balls = document.querySelectorAll("#q6 .ball");
-    for(let ball of balls){
+    for (let ball of balls) {
       ball.addEventListener("click", moveSequence);
     }
-    
-    
+
     async function moveSequence(e) {
-      for(let ball of balls){
+      for (let ball of balls) {
         ball.classList.add("not-clickable");
         ball.removeEventListener("click", moveSequence);
       }
@@ -74,7 +111,7 @@
 
       // Använd Promise.all() för att await:a att alla ska exekvera färdigt
 
-      for(let ball of balls){
+      for (let ball of balls) {
         ball.classList.remove("not-clickable");
         ball.style.animation = "";
         ball.addEventListener("click", moveSequence);

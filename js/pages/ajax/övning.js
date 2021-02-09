@@ -57,7 +57,7 @@
   // asynkron = hoppa i tid
   // synkron = allt händer i rakt tidsflöde
 
-  /* De fem magiska stegen för att använda XMLHttpRequest
+  // De fem magiska stegen för att använda XMLHttpRequest
   let xhr = new XMLHttpRequest();
 
   xhr.open("GET", url);
@@ -65,21 +65,17 @@
   xhr.responsType = "json";
 
   xhr.onload = function(){
-    console.log(xhr.status + " " + xhr.statusText);
-    aleconsole.logrt(JSON.stringify(xhr.response, null, " "));
+    //console.log(xhr.status + " " + xhr.statusText);
+    //console.log(xhr.response);
   };
 
   xhr.send();
-  */
 
   // HTTP respons koder
   // https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
 
   // Alla möjliga events för XMLHttpRequest som man kan registrera
   // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequestEventTarget
-
-  // progress objekt som skickas med som parameter
-  // https://developer.mozilla.org/en-US/docs/Web/API/ProgressEvent
 
   /* 
     pseudo-kod för inlämningsuppgift 2
@@ -99,6 +95,28 @@
   |            inför Fråga 3             |
   ---------------------------------------- 
   */
+
+  // async framför 'function' nyckelordet betyder
+  // att denna funktion kan komma att göra tidshopp
+
+  let button = document.querySelector("#q3_btn");
+  let outputElement = document.querySelector("#q3_out");
+
+  button.onclick = async function() {
+    // Från här(1)
+    const url = getCityWeatherUrl("Halmstad");
+
+    // Till här(1) reagerar vi på att användaren klickade på knappen
+    const serverResponse = await fetch(url); // vänta länge på ett svar, kanske 1-2 sek
+    // Från här(2)
+    // Till här(2) reagerar vi på att servern svarade
+    const info = await serverResponse.json(); // gör om svaret till ett JS objekt
+    // Från här(3)
+
+    outputElement.innerText = info.name;
+    // Till här(3) reagerar vi på att svars objektet skapades
+  }
+
   /* 
   ________________________________________
   |            inför Fråga 4             |
