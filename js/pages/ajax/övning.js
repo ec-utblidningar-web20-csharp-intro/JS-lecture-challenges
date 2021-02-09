@@ -71,6 +71,7 @@
 
   xhr.send();
   */
+
   // HTTP respons koder
   // https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
 
@@ -79,6 +80,20 @@
 
   // progress objekt som skickas med som parameter
   // https://developer.mozilla.org/en-US/docs/Web/API/ProgressEvent
+
+  /* 
+    pseudo-kod för inlämningsuppgift 2
+    
+    searchButton.onclick = function(){
+      const cityName = document.getElementById("search-bar").value;
+      const weatherUrl = getCityWeatherUrl(cityName);
+      
+      const info = getWeatherInfoObject(weatherUrl);
+      
+      document.querySelector(".title").innerText = info.weather[0].main;
+    }
+  */
+
   /* 
   ________________________________________
   |            inför Fråga 3             |
