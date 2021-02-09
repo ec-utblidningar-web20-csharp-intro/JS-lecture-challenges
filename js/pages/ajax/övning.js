@@ -51,12 +51,26 @@
   */
   // AJAX
   // AJAX = Asynchronous JavaScript And XML.
+  // AJAX -- vi pratar med webservrar och det kan ta tid
 
   // Asynkron vs Synkron kod
+  // asynkron = hoppa i tid
+  // synkron = allt händer i rakt tidsflöde
 
-  // Konceptuell bild
-  // https://www.w3schools.com/js/js_ajax_intro.asp
+  /* De fem magiska stegen för att använda XMLHttpRequest
+  let xhr = new XMLHttpRequest();
 
+  xhr.open("GET", url);
+
+  xhr.responsType = "json";
+
+  xhr.onload = function(){
+    console.log(xhr.status + " " + xhr.statusText);
+    aleconsole.logrt(JSON.stringify(xhr.response, null, " "));
+  };
+
+  xhr.send();
+  */
   // HTTP respons koder
   // https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
 

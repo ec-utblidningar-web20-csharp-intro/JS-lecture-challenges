@@ -3,6 +3,24 @@
   /*
    [Fråga 1]
   */
+  const outputElement = document.querySelector("#q1_out");
+
+  function getCityWeatherUrl(cityName){
+    const url = new URL('https://api.openweathermap.org/data/2.5/weather');
+    
+    url.searchParams.append("appid", "ac5d516646126253361022bafa972296");
+    url.searchParams.append("mode", "json");
+    url.searchParams.append("units", "metric");
+    url.searchParams.append("lang", "se");
+    url.searchParams.append("q", cityName);
+
+    outputElement.innerText = url;
+
+    return url;
+  }
+
+  const url = getCityWeatherUrl("Göteborg");
+  window.url = url;
 
   /* 
    [Fråga 2]
