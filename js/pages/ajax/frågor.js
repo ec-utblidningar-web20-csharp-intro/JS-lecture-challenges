@@ -51,8 +51,10 @@
         ball.removeEventListener("click", moveSequence);
       }
 
-      // Börja alla promises här via 'moveBallAndWait'
+      // Börja alla async operationer här via 'moveBallAndWait'
       // ge lite olika tider för att testa effekten
+
+      // Använd Promise.all() för att await:a att alla ska exekvera färdigt
 
       for(let ball of balls){
         ball.classList.remove("not-clickable");
