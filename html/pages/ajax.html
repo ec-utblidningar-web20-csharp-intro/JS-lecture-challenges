@@ -29,8 +29,8 @@
     <section>
       <img style="width: 100%;" src="img/url_layout.png" alt="">
       <h2>Fråga 1</h2>
-      <p>Använd <a href="https://javascript.info/url" target="_blank">URL</a> objektet för att bygga ett API
-        anrop till <a href="https://openweathermap.org/current#name" target="_blank">OpenWeather</a>
+      <p>Använd <a href="https://javascript.info/url">URL</a> objektet för att bygga ett API
+        anrop till <a href="https://openweathermap.org/current#name">OpenWeather</a>
         för att få tag på info om vädret i staden du är just nu. Skriv ut url:n i frågefönstret.
       </p>
       <p>
@@ -45,7 +45,7 @@
       </ul>
       <h3>Bonus:</h3>
       <p>Prompta att användaren får välja stad via
-        <a href="https://www.w3schools.com/jsref/met_win_prompt.asp" target="_blank">prompt()</a>
+        <a href="https://www.w3schools.com/jsref/met_win_prompt.asp">prompt()</a>
       </p>
       <div id="q1" class="fx fx-row fx-center fx-space">
         <pre id="q1_out">Skriv url:n här</pre>
@@ -71,7 +71,7 @@
     <section>
       <img style="width: 60%; margin: 40px 0px 0px 0px;" src="https://www.w3schools.com/js/pic_ajax.gif" alt="">
       <h2>Fråga 2</h2>
-      <p>Skapa ett <a href="https://javascript.info/xmlhttprequest" target="_blank">XMLHttpRequest</a> objekt för att
+      <p>Skapa ett <a href="https://javascript.info/xmlhttprequest">XMLHttpRequest</a> objekt för att
         skicka en
         begäran till url:n i Fråga 1
       </p>
@@ -104,7 +104,7 @@
         länken "ftp://speedtest.tele2.net/" + filnamnet på den filen du vill ladda ner.
       </p>
       <p>
-        Använd <a href="https://developer.mozilla.org/en-US/docs/Web/API/ProgressEvent" target="_blank">progress
+        Använd <a href="https://developer.mozilla.org/en-US/docs/Web/API/ProgressEvent">progress
           objektet</a>
         som skickas med som parameter.
       </p>
@@ -141,10 +141,10 @@
     <section>
       <h2>Fråga 3</h2>
       <p>Det finns en alternativ AJAX api till <code>XMLHttpRequest</code> som
-        heter <a href="https://javascript.info/fetch" target="_blank"><code>fetch()</code></a>
+        heter <a href="https://javascript.info/fetch"><code>fetch()</code></a>
         och är betydligt lättare att använda, men som bygger på två koncept
-        kallat <a href="https://javascript.info/promise-basics" target="_blank"><code>Promise</code></a> och 
-        <a href="https://javascript.info/async-await" target="_blank"><code>async/await</code></a>.
+        kallat <a href="https://javascript.info/promise-basics"><code>Promise</code></a> och
+        <a href="https://javascript.info/async-await"><code>async/await</code></a>.
         I denna fråga testar du att använda <code>fetch()</code> och om du är mer nyfiken
         på hur det fungerar så kommer resten av frågorna att stegvis förklara logiken bakom.
       </p>
@@ -169,8 +169,7 @@
       <p>Nu är det dags att göra arbete som tar längre tid.
         I detta fallet handlar det om att flytta en boll
         runt alla hörn längs en bana när man klickar på den.
-        Använd <a href="https://www.w3schools.com/jsref/met_win_settimeout.asp"
-          target="_blank"><code>setTimeout()</code></a>
+        Använd <a href="https://www.w3schools.com/jsref/met_win_settimeout.asp"><code>setTimeout()</code></a>
         för att sprida ut dina instruktioner i tid.
       </p>
       <p>Knepet här ligger i att varje gång vi måste
@@ -335,6 +334,12 @@
     };
   </script>
   <!-- Här körs js/pages/ajax/övning.js en gång-->
+  <script>
+    const aTags = document.getElementsByTagName("a");
+    for (const a of aTags) {
+      a.target = "_blank";
+    }
+  </script>
 </body>
 
 </html>
