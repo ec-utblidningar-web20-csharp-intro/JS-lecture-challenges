@@ -7,41 +7,41 @@
   */
   // href -- hela adressen
 
-  // origin -- allt om metod(protokoll) & 
+  // origin -- allt om metod(protokoll) &
   //           vart adressen gäller(hostname, port)
 
   // host -- hostname + port
   // hostname -- domän/website namn eller ip-adress (ipv4,ipv6)
   // port -- sifferkod för vilken _app_ på en server/PC du pratar med
 
-  // protocol -- vad är det vi håller på med 
+  // protocol -- vad är det vi håller på med
   //  (hämta hypertext? HTTP, hämta fil online? FTP, hämta fil lokalt? file)
 
   // pathname -- vart, i en fil&folder struktur ligger X
   // search -- parametrar till en WebAPI metod
   // hash -- fragment (en bit av) det du söker. Element id i html doc
-  
+
   // Börja leka med googles search api
   // https://moz.com/blog/the-ultimate-guide-to-the-google-search-parameters
-  function objProp2SearchParam(url, obj){
-    for(const key in obj){
+  function objProp2SearchParam(url, obj) {
+    for (const key in obj) {
       url.searchParams.append(key, obj[key]);
     }
   }
-  
+
   const url = new URL("https://google.com/search");
-  
+
   const mySearch = {
     q: "bilar",
     num: 2,
   };
-  
+
   objProp2SearchParam(url, mySearch);
 
   // loopa igenom parametrar
   let props = url.searchParams.entries();
 
-  for(const [k, v] of props){
+  for (const [k, v] of props) {
     console.log(k + ": " + v);
   }
   /*
@@ -60,11 +60,11 @@
   // De fem magiska stegen för att använda XMLHttpRequest
   let xhr = new XMLHttpRequest();
 
-  xhr.open("GET", url);
+  xhr.open("GET", "https://pokeapi.co/api/v2/pokemon/ditto");
 
   xhr.responsType = "json";
 
-  xhr.onload = function(){
+  xhr.onload = function () {
     //console.log(xhr.status + " " + xhr.statusText);
     //console.log(xhr.response);
   };
@@ -103,7 +103,7 @@
   let outputElement = document.querySelector("#q3_out");
 
   // utan callbacks
-  button.onclick = async function() {
+  button.onclick = async function () {
     // Från här(1)
     const url = getCityWeatherUrl("Halmstad");
 
@@ -116,18 +116,18 @@
 
     outputElement.innerText = info.name;
     // Till här(3) reagerar vi på att svars objektet skapades
-  }
+  };
 
   // med callbacks
-  button.onclick = function() {
+  button.onclick = function () {
     // Från här(1)
     const url = getCityWeatherUrl("Halmstad");
 
     let promise = fetch(url);
-    promise.then(function (serverResponse){
+    promise.then(function (serverResponse) {
       // Från här(2)
       let promise = serverResponse.json();
-      promise.then(function (info){
+      promise.then(function (info) {
         // Från här(3)
         outputElement.innerText = info.weather[0].main;
         // Till här(3) reagerar vi på att svars objektet skapades
@@ -138,21 +138,21 @@
     });
     // Till här(1) reagerar vi på att användaren klickade på knappen
     console.log("end of button reaction");
-  }
-  
+  };
+
   // med callbacks 2.0
-  button.onclick = function() {
+  button.onclick = function () {
     // Från här(1)
     const url = getCityWeatherUrl("Halmstad");
 
     fetch(url)
-      .then(function (serverResponse){
+      .then(function (serverResponse) {
         // Från här(2)
         console.log("end of server response reaction");
         return serverResponse.json();
         // Till här(2) reagerar vi på att servern svarade
       })
-      .then(function (info){
+      .then(function (info) {
         // Från här(3)
         outputElement.innerText = info.weather[0].main;
         // Till här(3) reagerar vi på att svars objektet skapades
@@ -160,7 +160,7 @@
       });
     // Till här(1) reagerar vi på att användaren klickade på knappen
     console.log("end of button reaction");
-  }
+  };
 
   /* 
   ________________________________________

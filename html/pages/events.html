@@ -7,10 +7,19 @@
     <title>Events</title>
     <base href="../../">
 
+    <!-- Whole website -->
     <link rel="stylesheet" href="css/general.css">
-    <link rel="stylesheet" href="css/pages/events.css">
     <script src="js/component.js"></script>
-    <script defer="true" src="js/pages/events.js"></script>
+
+    <!-- Page specific -->
+    <link rel="stylesheet" href="css/pages/events.css">
+    <script defer="true" src="js/pages/events/övning.js"></script>
+    <script defer="true" src="js/pages/events/frågor.js"></script>
+
+    <!-- HighLight JS -->
+    <link rel="stylesheet" href="lib/highlight/styles/xcode.css">
+    <script src="lib/highlight/highlight.pack.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
 </head>
 
 <body>
@@ -18,22 +27,93 @@
     <main class="fx fx-center fx-col">
         <section>
             <h2>Fråga 1</h2>
+            <p>
+                Skapa en funktion som tänder en fjäril genom
+                att sätta
+                <code><a href="https://www.w3schools.com/jsref/prop_html_style.asp">style</a>.filter = "grayscale(0%)"</code>
+                när man svävar över den.
+            </p>
+            <p>
+                Använd
+                <a href="https://www.w3schools.com/js/js_events.asp">
+                    <code>onmouseenter</code> eller
+                    <code>mouseenter</code>
+                </a>
+                <br>
+                För att få tag på fjärilen skickar du med
+                en parameter, som brukar namnges 'event' eller 'e'
+                sen kan man få tag på HTMLElementet via
+                '<code>event.currentTarget</code>'
+            </p>
             <div id="q1">
                 <div class="fx fx-row fx-center">
                     <img class="butterfly greyed-out" src="img/butterfly.webp">
                 </div>
             </div>
+            <details>
+                <summary>Facit</summary>
+                <pre><code class="javascript">function lightUp(event) {
+    let butterfly = event.currentTarget;
+    butterfly.style.filter = "grayscale(0%)";
+}
+
+document.querySelector("#q1 img").onmouseenter = lightUp;</code></pre>
+            </details>
         </section>
         <section>
             <h2>Fråga 2</h2>
+            <p>
+                Pröva att använda dig av funktioner utan namn
+                s.k. 'anonyma funktioner'. Antingen genom
+            <pre><code class="javascript">function() {
+
+}</code></pre>
+            formen eller
+            <pre><code class="javascript">() => {
+
+}</code></pre>
+            formen. (arrow-function)
+            </p>
+            <p>
+                Gör en för onmouseenter som fungerar samma som tidigare,
+                och en för onmouseleave som sätter style till en tom sträng.
+            </p>
+            <pre><code class="javascript">butterfly.style.filter = "grayscale(0%)"; // ge fjäril färg
+
+butterfly.style.filter = "grayscale(100%)"; // låt fjäril bli grå
+butterfly.style.filter = ""; // låt fjäril bli grå</code></pre>
             <div id="q2">
                 <div class="fx fx-row fx-center">
                     <img class="butterfly greyed-out" src="img/butterfly.webp">
                 </div>
             </div>
+            <details>
+                <summary>Facit</summary>
+                <pre><code class="javascript">let img = document.querySelector("#q2 img");
+
+img.onmouseenter = function (event) {
+  let butterfly = event.currentTarget;
+  butterfly.style.filter = "grayscale(0%)";
+};
+img.onmouseleave = (event) => {
+  let butterfly = event.currentTarget;
+  butterfly.style.filter = "grayscale(0%)";
+};</code></pre>
+            </details>
         </section>
         <section>
             <h2>Fråga 3</h2>
+            <p>
+                Använd nu en funktion som har namn igen. Pröva att binda onmouseover
+                eventet på alla tre sätt som går i JavaScript
+            </p>
+            <p>
+                På första fjärilen så går du via HTML <code>onmouseover="foo()"</code> metoden
+                Andra fjärilen går via <code>.onmouseover = foo;</code> metoden
+                Tredje går via <code>addEventListener("mouseover", foo);</code> metoden
+                <br>
+                Vad är det för för- och nackdelar med de olika metoderna?
+            </p>
             <div id="q3">
                 <div class="fx fx-row fx-center">
                     <img id="b1" onMouseOver="belysFjäril(event)" class="butterfly greyed-out" src="img/butterfly.webp">
@@ -41,14 +121,87 @@
                     <img id="b3" class="butterfly greyed-out" src="img/butterfly.webp">
                 </div>
             </div>
+            <details>
+                <summary>Facit</summary>
+                <pre><code class="javascript">function lightUp(event){
+    let butterfly = event.currentTarget;
+    butterfly.style.filter = "grayscale(0%)";
+}
+
+// inne i events.html
+&lt;img id="b1" class="butterfly" onhover="lightUp(event)" src="/img/butterfly.webp">
+
+let b2 = document.querySelector("#b2");
+b2.onmouseover = lightUp;
+
+let b3 = document.querySelector("#b3");
+b3.addEventListener("mouseover", lightUp);</code></pre>
+            </details>
         </section>
         <section>
             <h2>Fråga 4</h2>
+            <p>
+                Målet är att fjärilen ska börja flyga.
+                <br>
+                Börja med att den flyger hela tiden,
+                lös klickande och sånt senare.
+            </p>
+
+            <p>
+                Trick:
+            </p>
+            <ul>
+                <li>Se till att fjärilen är ett direkt barn till &lt;body></li>
+                <li>Sätt CSS position till absolute</li>
+                <li>Sätt CSS z-position till något högt värde</li>
+                <li>Sätt position via CSS left och top</li>
+                <li>Hämta musposition via
+                    <a
+                        href="https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent"><code>document.onmousemove</code></a>
+                    eventet som gäller vart somhelst i websidan
+                </li>
+            </ul>
             <div id="q4">
                 <div class="fx fx-row fx-center">
                     <img class="butterfly greyed-out" src="img/butterfly.webp">
                 </div>
             </div>
+            <details>
+                <summary>Facit</summary>
+                <pre><code class="javascript">//skapa ett lokalt scope så att jag inte bråkar med
+ //andra variabler definierat i tidigare uppgifter
+{ 
+  // CSS selector syntax
+  let butterfly = document.querySelector("#q4 img");
+  butterfly.classList.add("abs-pos");
+
+  function flyga(e){
+    //console.log(`Sido koordinater x:${e.clientX} y:${e.clientY}`);
+    let x = window.scrollX + e.clientX;
+    let y = window.scrollY + e.clientY;
+
+    x -= butterfly.offsetWidth / 2;
+    y -= butterfly.offsetHeight / 2;
+
+    butterfly.style.left = x + "px";
+    butterfly.style.top = y + "px";
+    // gör så att fjärilen följer muspekaren
+  }
+
+  //börja/sluta flyga om vi klickar
+  butterfly.onclick = function(){
+     // om onmousemove inte är definierad
+    if(!document.onmousemove){
+      document.onmousemove = flyga;
+
+    }else{
+      document.onmousemove = undefined;
+    }
+
+    butterfly.classList.toggle("greyed-out");
+  };
+}</code></pre>
+            </details>
         </section>
     </main>
     <!-- här körs event.js koden -->
