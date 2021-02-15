@@ -11,7 +11,7 @@ code {
 main > section {
   width: 80%;
   max-width: 20cm;
-  margin-bottom: 5vh;
+  margin-bottom: 10vh;
 }
 
 section > div {
@@ -35,13 +35,11 @@ summary {
   outline: none;
 }
 
-
-
-.fx{
-    display: flex;
+.fx {
+  display: flex;
 }
 .fx-center {
-  justify-content:space-evenly;
+  justify-content: space-evenly;
   align-items: center;
 }
 .fx-row {
@@ -50,13 +48,13 @@ summary {
 .fx-col {
   flex-direction: column;
 }
-.fx-space{
-  justify-content:space-around;
-  justify-items:space-around;
+.fx-space {
+  justify-content: space-around;
+  justify-items: space-around;
 }
-.fx-left{
-  justify-content:left;
-  justify-items:left;
+.fx-left {
+  justify-content: left;
+  justify-items: left;
 }
 
 .hide {

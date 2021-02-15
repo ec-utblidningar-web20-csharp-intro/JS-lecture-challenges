@@ -1,64 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Funktioner</title>
-    <base href="../../" />
 
-    <!-- Whole website -->
-    <link rel="stylesheet" href="css/general.css" />
-    <script src="js/component.js"></script>
-    
-    <!-- Page specific -->
-    <link rel="stylesheet" href="css/pages/arrays.css" />
-    <script defer="true" src="js/pages/arrays.js"></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Funktioner</title>
+  <base href="../../" />
 
-    <!-- HighLight JS -->
-    <link rel="stylesheet" href="lib/highlight/styles/xcode.css">
-    <script src="lib/highlight/highlight.pack.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
-  </head>
+  <!-- Whole website -->
+  <link rel="stylesheet" href="css/general.css" />
+  <script src="js/component.js"></script>
 
-  <body>
-    <insert data-component="nav"></insert>
-    <main class="fx fx-center fx-col">
-      <!-- Fråga 1 -->
-      <section>
-        <h2>Fråga 1</h2>
-        <div id="q1">
-          <div class="fx fx-row fx-center parent">
-            <div class="box">
-              <p>
-                Skapa en array med siffrorna 1, 4.2, 9, 8.7, 15, 17.6.<br />
-                Använd funktionen filter på arrayen för att filtrera ut alla siffror som inte är int (heltal) och skriv
-                ut resultatet.<br />
-                TIPS. använd Number.IsInteger()
-              </p>
-            </div>
-            <div class="box">
-              <pre><code class="javascript">
+  <!-- Page specific -->
+  <link rel="stylesheet" href="css/pages/arrays.css" />
+  <script defer="true" src="js/pages/arrays/util.js"></script>
+  <script defer="true" src="js/pages/arrays/frågor.js"></script>
+
+  <!-- HighLight JS -->
+  <link rel="stylesheet" href="lib/highlight/styles/xcode.css">
+  <script src="lib/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+</head>
+
+<body>
+  <insert data-component="nav"></insert>
+  <main class="fx fx-center fx-col">
+    <code><h1>arr.filter</h1></code>
+    <!-- Fråga 1 -->
+    <section>
+      <h2>Fråga 1</h2>
+      <div id="q1">
+        <div class="fx fx-row fx-center parent">
+          <div class="box">
+            <p>
+              Skapa en array med siffrorna 1, 4.2, 9, 8.7, 15, 17.6.<br />
+              Använd funktionen filter på arrayen för att filtrera ut alla siffror som inte är int (heltal) och skriv
+              ut resultatet.<br />
+              TIPS. använd Number.IsInteger()
+            </p>
+          </div>
+          <div class="box">
+            <pre><code class="javascript">
 const myArray = [1, 4.2, 9, 8.7, 15, 17.6];
 console.log(myArray.filter(Number.isInteger));
 </code></pre>
-            </div>
-            <div class="spoiler" onclick="closeSpoiler(event)">Klicka för att visa lösning</div>
           </div>
+          <div class="spoiler" onclick="closeSpoiler(event)">Klicka för att visa lösning</div>
         </div>
-      </section>
-      <!-- Fråga 2 -->
-      <section>
-        <h2>Fråga 2</h2>
-        <div id="q2">
-          <div class="fx fx-row fx-center parent">
-            <div class="box">
-              <p>
-                Gör samma sak som förra uppgiften men byt ut filter funktionen mot en loop som filtrerar och skriver ut
-                arrayen.
-              </p>
-            </div>
-            <div class="box">
-              <pre><code class="javascript">
+      </div>
+    </section>
+    <!-- Fråga 2 -->
+    <section>
+      <h2>Fråga 2</h2>
+      <div id="q2">
+        <div class="fx fx-row fx-center parent">
+          <div class="box">
+            <p>
+              Gör samma sak som förra uppgiften men byt ut filter funktionen mot en loop som filtrerar och skriver ut
+              arrayen.
+            </p>
+          </div>
+          <div class="box">
+            <pre><code class="javascript">
 const myArray = [1, 4.2, 9, 8.7, 15, 17.6];
 let newArray = [];
 for (let i = 0; i < myArray.length; i++) {
@@ -68,27 +71,27 @@ for (let i = 0; i < myArray.length; i++) {
 }
 console.log(newArray);
 </code></pre>
-            </div>
-            <div class="spoiler" onclick="closeSpoiler(event)">Klicka för att visa lösning</div>
           </div>
+          <div class="spoiler" onclick="closeSpoiler(event)">Klicka för att visa lösning</div>
         </div>
-      </section>
-      <!-- Fråga 3 -->
-      <section>
-        <h2>Fråga 3</h2>
-        <div id="q3">
-          <div class="fx fx-row fx-center parent">
-            <div class="box">
-              <p>
-                Börja med att skapa en array med dessa nummer 84, 98, 48, 98, 28, 32, 56, 71, 98, 29.<br />
-                Använd filter för att filtrera bort alla ojämna tal och skapa en funktion som tar emot ett tal och
-                kollar om det är jämt eller inte.<br />
-                Funktionen returnerar true om numret är jämnt och annars false.<br />
-                Skriv ut resultatet.
-              </p>
-            </div>
-            <div class="box">
-              <pre><code class="javascript">
+      </div>
+    </section>
+    <!-- Fråga 3 -->
+    <section>
+      <h2>Fråga 3</h2>
+      <div id="q3">
+        <div class="fx fx-row fx-center parent">
+          <div class="box">
+            <p>
+              Börja med att skapa en array med dessa nummer 84, 98, 48, 98, 28, 32, 56, 71, 98, 29.<br />
+              Använd filter för att filtrera bort alla ojämna tal och skapa en funktion som tar emot ett tal och
+              kollar om det är jämt eller inte.<br />
+              Funktionen returnerar true om numret är jämnt och annars false.<br />
+              Skriv ut resultatet.
+            </p>
+          </div>
+          <div class="box">
+            <pre><code class="javascript">
 const myArray = [84, 75, 48, 5, 28,
                 32, 56, 71, 98, 29];
 console.log(myArray.filter(isEven));
@@ -101,68 +104,69 @@ function isEven(number) {
   }
 }
 </code></pre>
-            </div>
-            <div class="spoiler" onclick="closeSpoiler(event)">Klicka för att visa lösning</div>
           </div>
+          <div class="spoiler" onclick="closeSpoiler(event)">Klicka för att visa lösning</div>
         </div>
-      </section>
-      <!-- Fråga 4 -->
-      <section>
-        <h2>Fråga 4</h2>
-        <div id="q4">
-          <div class="fx fx-row fx-center parent">
-            <div class="box">
-              <p>
-                Gör likadant som i förra uppgiften men nu ska du byta ut funktionen du skapade mot en arrow funktion
-                direkt i filter som gör precis samma sak.
-              </p>
-            </div>
-            <div class="box">
-              <pre><code class="javascript">
+      </div>
+    </section>
+    <!-- Fråga 4 -->
+    <section>
+      <h2>Fråga 4</h2>
+      <div id="q4">
+        <div class="fx fx-row fx-center parent">
+          <div class="box">
+            <p>
+              Gör likadant som i förra uppgiften men nu ska du byta ut funktionen du skapade mot en arrow funktion
+              direkt i filter som gör precis samma sak.
+            </p>
+          </div>
+          <div class="box">
+            <pre><code class="javascript">
 const myArray = [84, 75, 48, 5, 28,
                 32, 56, 71, 98, 29];
 console.log(myArray.filter((n) => n % 2 === 0));
 </code></pre>
-            </div>
-            <div class="spoiler" onclick="closeSpoiler(event)">Klicka för att visa lösning</div>
           </div>
+          <div class="spoiler" onclick="closeSpoiler(event)">Klicka för att visa lösning</div>
         </div>
-      </section>
-      <!-- Fråga 5 -->
-      <section>
-        <h2>Fråga 5</h2>
-        <div id="q5">
-          <div class="fx fx-row fx-center parent">
-            <div class="box">
-              <p>
-                Skapa en array med siffrorna 1, 4, 9, 25.<br />
-                Använd array.map för att skapa och skriva ut en ny array med kvadratroten av talen.<br />
-                TIPS. använd Math.sqrt för att räkna ut kvadratroten.
-              </p>
-            </div>
-            <div class="box">
-              <pre><code class="javascript">
+      </div>
+    </section>
+    <code><h1>arr.map</h1></code>
+    <!-- Fråga 5 -->
+    <section>
+      <h2>Fråga 5</h2>
+      <div id="q5">
+        <div class="fx fx-row fx-center parent">
+          <div class="box">
+            <p>
+              Skapa en array med siffrorna 1, 4, 9, 25.<br />
+              Använd array.map för att skapa och skriva ut en ny array med kvadratroten av talen.<br />
+              TIPS. använd Math.sqrt för att räkna ut kvadratroten.
+            </p>
+          </div>
+          <div class="box">
+            <pre><code class="javascript">
 const myArray = [1, 4, 9, 25];
 console.log(myArray.map(Math.sqrt));
 </code></pre>
-            </div>
-            <div class="spoiler" onclick="closeSpoiler(event)">Klicka för att visa lösning</div>
           </div>
+          <div class="spoiler" onclick="closeSpoiler(event)">Klicka för att visa lösning</div>
         </div>
-      </section>
-      <!-- Fråga 6 -->
-      <section>
-        <h2>Fråga 6</h2>
-        <div id="q6">
-          <div class="fx fx-row fx-center parent">
-            <div class="box">
-              <p>
-                Gör likadant som på förra uppgiften, men denna gång får du inte använda map utan ska istället göra en
-                egen loop som löser problemet.
-              </p>
-            </div>
-            <div class="box">
-              <pre><code class="javascript">
+      </div>
+    </section>
+    <!-- Fråga 6 -->
+    <section>
+      <h2>Fråga 6</h2>
+      <div id="q6">
+        <div class="fx fx-row fx-center parent">
+          <div class="box">
+            <p>
+              Gör likadant som på förra uppgiften, men denna gång får du inte använda map utan ska istället göra en
+              egen loop som löser problemet.
+            </p>
+          </div>
+          <div class="box">
+            <pre><code class="javascript">
 const myArray = [1, 4, 9, 25];
 const newArray = [];
 for (let i = 0; i < myArray.length; i++) {
@@ -170,96 +174,97 @@ for (let i = 0; i < myArray.length; i++) {
 }
 console.log(newArray);
 </code></pre>
-            </div>
-            <div class="spoiler" onclick="closeSpoiler(event)">Klicka för att visa lösning</div>
           </div>
+          <div class="spoiler" onclick="closeSpoiler(event)">Klicka för att visa lösning</div>
         </div>
-      </section>
-      <!-- Fråga 7 -->
-      <section>
-        <h2>Fråga 7</h2>
-        <div id="q7">
-          <div class="fx fx-row fx-center parent">
-            <div class="box">
-              <p>
-                Skapa en array som heter names och som innehåller några olika namn.<br />
-                Skapa en funktion som heter reverseName som tar emot ett namn och returnerar namnet i omvänd ordning
-                (oskar blir rakso).<br />
-                Använda map och reverseName för att ändra ordning på alla namn i names.<br />
-                TIPS. array.reverse() kan användas för att vända på en array.
-              </p>
-            </div>
-            <div class="box">
-              <pre><code class="javascript">
+      </div>
+    </section>
+    <!-- Fråga 7 -->
+    <section>
+      <h2>Fråga 7</h2>
+      <div id="q7">
+        <div class="fx fx-row fx-center parent">
+          <div class="box">
+            <p>
+              Skapa en array som heter names och som innehåller några olika namn.<br />
+              Skapa en funktion som heter reverseName som tar emot ett namn och returnerar namnet i omvänd ordning
+              (oskar blir rakso).<br />
+              Använda map och reverseName för att ändra ordning på alla namn i names.<br />
+              TIPS. array.reverse() kan användas för att vända på en array.
+            </p>
+          </div>
+          <div class="box">
+            <pre><code class="javascript">
 const names = ['Oskar', 'Anders', 'Anna'];
 function reverseName(name) {
   return name.split('').reverse().join('');
 }
 console.log(names.map(reverseName));
 </code></pre>
-            </div>
-            <div class="spoiler" onclick="closeSpoiler(event)">Klicka för att visa lösning</div>
           </div>
+          <div class="spoiler" onclick="closeSpoiler(event)">Klicka för att visa lösning</div>
         </div>
-      </section>
-      <!-- Fråga 8 -->
-      <section>
-        <h2>Fråga 8</h2>
-        <div id="q8">
-          <div class="fx fx-row fx-center parent">
-            <div class="box">
-              <p>
-                Gör likadant som förra uppgiften men nu ska du byta ut reverseName mot en arrow funktion direkt i map.
-              </p>
-            </div>
-            <div class="box">
-              <pre><code class="javascript">
+      </div>
+    </section>
+    <!-- Fråga 8 -->
+    <section>
+      <h2>Fråga 8</h2>
+      <div id="q8">
+        <div class="fx fx-row fx-center parent">
+          <div class="box">
+            <p>
+              Gör likadant som förra uppgiften men nu ska du byta ut reverseName mot en arrow funktion direkt i map.
+            </p>
+          </div>
+          <div class="box">
+            <pre><code class="javascript">
 const names = ['Oskar', 'Anders', 'Anna'];
 console.log(names.map((name) => name.split('').reverse().join('')));
 </code></pre>
-            </div>
-            <div class="spoiler" onclick="closeSpoiler(event)">Klicka för att visa lösning</div>
           </div>
+          <div class="spoiler" onclick="closeSpoiler(event)">Klicka för att visa lösning</div>
         </div>
-      </section>
-      <!-- Fråga 9 -->
-      <section>
-        <h2>Fråga 9</h2>
-        <div id="q9">
-          <div class="fx fx-row fx-center parent">
-            <div class="box">
-              <p>
-                Skapa en array med fem olika nummer som du bestämmer själv.<br />
-                Använd array.reduce för att räkna ut produkten av alla nummer i arrayen (alltså
-                num1*num2*num3*num4*num5).<br />
-                TIPS. Använd Math.imul för att räkna ut produkten av två tal.<br />
-                Läs gärna på om hur reduce fungerar
-                https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
-              </p>
-            </div>
-            <div class="box">
-              <pre><code class="javascript">
+      </div>
+    </section>
+    <code><h1>arr.reduce</h1></code>
+    <!-- Fråga 9 -->
+    <section>
+      <h2>Fråga 9</h2>
+      <div id="q9">
+        <div class="fx fx-row fx-center parent">
+          <div class="box">
+            <p>
+              Skapa en array med fem olika nummer som du bestämmer själv.<br />
+              Använd array.reduce för att räkna ut produkten av alla nummer i arrayen (alltså
+              num1*num2*num3*num4*num5).<br />
+              TIPS. Använd Math.imul för att räkna ut produkten av två tal.<br />
+              Läs gärna på om hur reduce fungerar
+              https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
+            </p>
+          </div>
+          <div class="box">
+            <pre><code class="javascript">
 const myArray = [2, 3, 6, 18, 108];
 console.log(myArray.reduce(Math.imul));
 </code></pre>
-            </div>
-            <div class="spoiler" onclick="closeSpoiler(event)">Klicka för att visa lösning</div>
           </div>
+          <div class="spoiler" onclick="closeSpoiler(event)">Klicka för att visa lösning</div>
         </div>
-      </section>
-      <!-- Fråga 10 -->
-      <section>
-        <h2>Fråga 10</h2>
-        <div id="q10">
-          <div class="fx fx-row fx-center parent">
-            <div class="box">
-              <p>
-                Gör likadant som på förra uppgiften, men denna gång får du inte använda reduce utan ska istället göra en
-                egen loop som löser problemet.
-              </p>
-            </div>
-            <div class="box">
-              <pre><code class="javascript">
+      </div>
+    </section>
+    <!-- Fråga 10 -->
+    <section>
+      <h2>Fråga 10</h2>
+      <div id="q10">
+        <div class="fx fx-row fx-center parent">
+          <div class="box">
+            <p>
+              Gör likadant som på förra uppgiften, men denna gång får du inte använda reduce utan ska istället göra en
+              egen loop som löser problemet.
+            </p>
+          </div>
+          <div class="box">
+            <pre><code class="javascript">
 const myArray = [2, 3, 6, 18, 108];
 let product = myArray[0];
 for (let i = 1; i < myArray.length; i++) {
@@ -267,28 +272,28 @@ for (let i = 1; i < myArray.length; i++) {
 }
 console.log(product);
 </code></pre>
-            </div>
-            <div class="spoiler" onclick="closeSpoiler(event)">Klicka för att visa lösning</div>
           </div>
+          <div class="spoiler" onclick="closeSpoiler(event)">Klicka för att visa lösning</div>
         </div>
-      </section>
-      <!-- Fråga 11 -->
-      <section>
-        <h2>Fråga 11</h2>
-        <div id="q11">
-          <div class="fx fx-row fx-center parent">
-            <div class="box">
-              <p>
-                Skapa en array med alla nummer 1-50. Lättast är att skapa en loop som lägger in alla talen så slipper du
-                göra det manuellt. <br />
-                Skapa en funktion som heter fizzBuzz som tar emot en sträng och ett tal och lägger ihop dessa. Men om
-                talet är jämnt delbar med 3 ska talet bytas ut mot Buzz, om talet är jämnt delbar med 5 ska talet bytas
-                ut mot Fizz och om talet är jämnt delbart med både 3 och 5 ska talet bvytas ut mot Fizz Buzz. Använd sen
-                array.reduce och fizzBuzz för att skriva ut hela arrayen med nummer.
-              </p>
-            </div>
-            <div class="box">
-              <pre><code class="javascript">
+      </div>
+    </section>
+    <!-- Fråga 11 -->
+    <section>
+      <h2>Fråga 11</h2>
+      <div id="q11">
+        <div class="fx fx-row fx-center parent">
+          <div class="box">
+            <p>
+              Skapa en array med alla nummer 1-50. Lättast är att skapa en loop som lägger in alla talen så slipper du
+              göra det manuellt. <br />
+              Skapa en funktion som heter fizzBuzz som tar emot en sträng och ett tal och lägger ihop dessa. Men om
+              talet är jämnt delbar med 3 ska talet bytas ut mot Buzz, om talet är jämnt delbar med 5 ska talet bytas
+              ut mot Fizz och om talet är jämnt delbart med både 3 och 5 ska talet bvytas ut mot Fizz Buzz. Använd sen
+              array.reduce och fizzBuzz för att skriva ut hela arrayen med nummer.
+            </p>
+          </div>
+          <div class="box">
+            <pre><code class="javascript">
 const myArray = [];
 for (let i = 1; i <= 50; i++) {
   myArray.push(i);
@@ -301,21 +306,21 @@ function fizzBuzz(accumulator, curr) {
 }
 console.log(myArray.reduce(fizzBuzz));
 </code></pre>
-            </div>
-            <div class="spoiler" onclick="closeSpoiler(event)">Klicka för att visa lösning</div>
           </div>
+          <div class="spoiler" onclick="closeSpoiler(event)">Klicka för att visa lösning</div>
         </div>
-      </section>
-      <!-- Fråga 12 -->
-      <section>
-        <h2>Fråga 12</h2>
-        <div id="q12">
-          <div class="fx fx-row fx-center parent">
-            <div class="box">
-              <p>Gör likadant som förra gången men ersätt fizzBuzz med en arrow funktion direkt i reduce.</p>
-            </div>
-            <div class="box">
-              <pre><code class="javascript">
+      </div>
+    </section>
+    <!-- Fråga 12 -->
+    <section>
+      <h2>Fråga 12</h2>
+      <div id="q12">
+        <div class="fx fx-row fx-center parent">
+          <div class="box">
+            <p>Gör likadant som förra gången men ersätt fizzBuzz med en arrow funktion direkt i reduce.</p>
+          </div>
+          <div class="box">
+            <pre><code class="javascript">
 const myArray = [];
 for (let i = 1; i <= 50; i++) {
   myArray.push(i);
@@ -330,53 +335,56 @@ console.log(
 );
 
 </code></pre>
-            </div>
-            <div class="spoiler" onclick="closeSpoiler(event)">Klicka för att visa lösning</div>
           </div>
+          <div class="spoiler" onclick="closeSpoiler(event)">Klicka för att visa lösning</div>
         </div>
-      </section>
-      <!-- Fråga 13 -->
-      <section>
-        <h2>Fråga 13</h2>
-        <div id="q13">
-          <div class="fx fx-row fx-center parent">
-            <div class="box">
-              <p>
-                Skapa en array med 10 nummer. Skapa en funktion som tar emot två nummer (a, b) och som returnerar skillnaden mellan de två nummrerna<br />
-                Använd array.sort och din funktion för att sortera arrayen. Skriv ut arrayen till konsolen
-              </p>
-            </div>
-            <div class="box">
-              <pre><code class="javascript">
+      </div>
+    </section>
+    <code><h1>arr.sort</h1></code>
+    <!-- Fråga 13 -->
+    <section>
+      <h2>Fråga 13</h2>
+      <div id="q13">
+        <div class="fx fx-row fx-center parent">
+          <div class="box">
+            <p>
+              Skapa en array med 10 nummer. Skapa en funktion som tar emot två nummer (a, b) och som returnerar
+              skillnaden mellan de två nummrerna<br />
+              Använd array.sort och din funktion för att sortera arrayen. Skriv ut arrayen till konsolen
+            </p>
+          </div>
+          <div class="box">
+            <pre><code class="javascript">
 const myArray = [5, 2, 6, 1, 9, 3, 12, 8];
 function compare(a, b) {
   return a - b;
 }
 console.log(myArray.sort(compare));
 </code></pre>
-            </div>
-            <div class="spoiler" onclick="closeSpoiler(event)">Klicka för att visa lösning</div>
           </div>
+          <div class="spoiler" onclick="closeSpoiler(event)">Klicka för att visa lösning</div>
         </div>
-      </section>
-      <!-- Fråga 14 -->
-      <section>
-        <h2>Fråga 14</h2>
-        <div id="q14">
-          <div class="fx fx-row fx-center parent">
-            <div class="box">
-              <p>
-                Gör likadant som på förra uppgiften men byt ut nummerna i arrayen mot strängar. Ändra på din funktion så att den jämför strängar istället för nummer och returnerar.<br />
-                <ul>
-                  <li>-1 om a är mindre än b</li>
-                  <li>0 om a är lika med b</li>
-                  <li>1 om a är större än b</li>
-                </ul>
-                TIPS. Man kan använda dessa operatorer på strängar <, > och ===.
+      </div>
+    </section>
+    <!-- Fråga 14 -->
+    <section>
+      <h2>Fråga 14</h2>
+      <div id="q14">
+        <div class="fx fx-row fx-center parent">
+          <div class="box">
+            <p>
+              Gör likadant som på förra uppgiften men byt ut nummerna i arrayen mot strängar. Ändra på din funktion så
+              att den jämför strängar istället för nummer och returnerar.<br />
+            <ul>
+              <li>-1 om a är mindre än b</li>
+              <li>0 om a är lika med b</li>
+              <li>1 om a är större än b</li>
+            </ul>
+            TIPS. Man kan använda dessa operatorer på strängar <,> och ===.
               </p>
-            </div>
-            <div class="box">
-              <pre><code class="javascript">
+          </div>
+          <div class="box">
+            <pre><code class="javascript">
 const myArray = ['ant', 'bee', 'cat', 'dog', 'elephant'];
 function compare(a, b) {
   if (a < b) return -1
@@ -385,23 +393,24 @@ function compare(a, b) {
 }
 console.log(myArray.sort(compare));
 </code></pre>
-            </div>
-            <div class="spoiler" onclick="closeSpoiler(event)">Klicka för att visa lösning</div>
           </div>
+          <div class="spoiler" onclick="closeSpoiler(event)">Klicka för att visa lösning</div>
         </div>
-      </section>
-      <!-- Fråga 15 -->
-      <section>
-        <h2>Fråga 15</h2>
-        <div id="q15">
-          <div class="fx fx-row fx-center parent">
-            <div class="box">
-              <p>
-                Gör likadant som på förra uppgiften men byt ut din funktion mot en array funktion direkt i array.sort.<br />
-              </p>
-            </div>
-            <div class="box">
-              <pre><code class="javascript">
+      </div>
+    </section>
+    <!-- Fråga 15 -->
+    <section>
+      <h2>Fråga 15</h2>
+      <div id="q15">
+        <div class="fx fx-row fx-center parent">
+          <div class="box">
+            <p>
+              Gör likadant som på förra uppgiften men byt ut din funktion mot en array funktion direkt i
+              array.sort.<br />
+            </p>
+          </div>
+          <div class="box">
+            <pre><code class="javascript">
 const myArray = ['ant', 'bee', 'cat', 'dog', 'elephant'];
 console.log(
   myArray.sort((a, b) => {
@@ -411,11 +420,12 @@ console.log(
   })
 );
 </code></pre>
-            </div>
-            <div class="spoiler" onclick="closeSpoiler(event)">Klicka för att visa lösning</div>
           </div>
+          <div class="spoiler" onclick="closeSpoiler(event)">Klicka för att visa lösning</div>
         </div>
-      </section>
-    </main>
-  </body>
+      </div>
+    </section>
+  </main>
+</body>
+
 </html>
