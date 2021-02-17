@@ -1,5 +1,12 @@
 "use strict";
 /*
+[Intro]
+*/
+document.querySelector("#intro button").onclick = function () {
+  //let arr = ;
+  //document.querySelector("#intro textarea").innerText = arr;
+};
+/*
 [Fråga 1]
 */
 /* 

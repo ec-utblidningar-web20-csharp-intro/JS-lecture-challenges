@@ -204,6 +204,12 @@ b3.addEventListener("mouseover", lightUp);</code></pre>
             </details>
         </section>
     </main>
+    <script>
+        const aTags = document.getElementsByTagName("a");
+        for (const a of aTags) {
+            a.target = "_blank";
+        }
+    </script>
     <!-- här körs event.js koden -->
 </body>
 
