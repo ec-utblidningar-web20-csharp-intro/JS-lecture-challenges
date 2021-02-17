@@ -79,7 +79,19 @@
       <details>
         <summary>Facit</summary>
         <pre><code class="javascript">document.querySelector("#intro button").onclick = function () {
-  let arr = Array(12).fill(0);
+  let arr = [];
+  for (let i = 0; i < 12; i++) {
+    //man kan skriva såhär
+    arr.push(0);
+    //eller såhär
+    arr[i] = 0;
+  }
+
+  // eller såhär
+  arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+  // eller såhär
+  arr = Array(12).fill(0);
   document.querySelector("#intro textarea").innerText = arr;
 };</code></pre>
       </details>
@@ -111,14 +123,37 @@
         <pre><code class="javascript">document.querySelector("#q1 button").onclick = function () {
   let arr = [1, 4.2, 9, 8.7, 15, 17.6];
 
-  let filtered = [];
-  for (const n of arr) {
-    if (Number.isInteger(n)) {
-      filtered.push(n);
+  // Man kan göra på det långa sättet
+  let filtreradArray = [];
+  for (let i = 0; i > arr.length; i++) {
+    if (Number.isInteger(arr[i])) {
+      filtreradArray.push(arr[i]);
     }
   }
 
-  document.querySelector("#q1 textarea").innerText = filtered;
+  // eller såhär
+  function myFilterFunc(number) {
+    return Number.isInteger(number);
+  }
+  filtreradArray = arr.filter(myFilterFunc);
+
+  // eller såhär
+  filtreradArray = arr.filter(function (number) {
+    return Number.isInteger(number);
+  });
+
+  // eller såhär
+  filtreradArray = arr.filter((number) => {
+    return Number.isInteger(number);
+  });
+
+  // eller såhär
+  filtreradArray = arr.filter((number) => Number.isInteger(number));
+
+  // till och med såhär
+  filtreradArray = arr.filter(Number.isInteger);
+
+  document.querySelector("#q1 textarea").innerText = filtreradArray;
 };</code></pre>
       </details>
     </section>
