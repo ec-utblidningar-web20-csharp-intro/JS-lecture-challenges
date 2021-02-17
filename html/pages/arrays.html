@@ -78,7 +78,10 @@
       </div>
       <details>
         <summary>Facit</summary>
-        <pre><code class="javascript"></code></pre>
+        <pre><code class="javascript">document.querySelector("#intro button").onclick = function () {
+  let arr = Array(12).fill(0);
+  document.querySelector("#intro textarea").innerText = arr;
+};</code></pre>
       </details>
     </section>
     <code><h1>arr.<a href="https://www.w3schools.com/jsref/jsref_filter.asp">filter</a></h1></code>
@@ -103,6 +106,21 @@
           </textarea>
         </div>
       </div>
+      <details>
+        <summary>Facit</summary>
+        <pre><code class="javascript">document.querySelector("#q1 button").onclick = function () {
+  let arr = [1, 4.2, 9, 8.7, 15, 17.6];
+
+  let filtered = [];
+  for (const n of arr) {
+    if (Number.isInteger(n)) {
+      filtered.push(n);
+    }
+  }
+
+  document.querySelector("#q1 textarea").innerText = filtered;
+};</code></pre>
+      </details>
     </section>
     <!-- Fråga 2 -->
     <section>
@@ -126,6 +144,17 @@
           </textarea>
         </div>
       </div>
+      <details>
+        <summary>Facit</summary>
+        <pre><code class="javascript">document.querySelector("#q2 button").onclick = function () {
+  let arr = [1, 4.2, 9, 8.7, 15, 17.6];
+
+  // ()=> är en instruktionslista precis som function(){}
+  let filtered = arr.filter((i) => Number.isInteger(i));
+
+  document.querySelector("#q2 textarea").innerText = filtered;
+};</code></pre>
+      </details>
     </section>
     <!-- Fråga 3 -->
     <section>
